@@ -10,6 +10,10 @@ export default function HomeNavbar() {
         navigate("/login");
     }
 
+    const handleRedirectToCart = () => {
+        navigate("/cart");
+    }
+
     return (
         <div>
             <div className="top-header">
@@ -33,7 +37,7 @@ export default function HomeNavbar() {
                 </div>
                 <div className="user-actions">
                     <span onClick={handleRedirectToLogin} className="action-item"><i className="fas fa-user" /> Login</span>
-                    <span className="action-item"><i className="fas fa-cart-shopping" /> Cart</span>
+                    <span onClick={handleRedirectToCart} className="action-item"><i className="fas fa-cart-shopping" /> Cart</span>
                 </div>
             </div>
             <nav className="bottom-header">

@@ -1,5 +1,5 @@
 import type { MetaFunction } from "@remix-run/node";
-import "../styles/home.scss";
+// import "../../styles/home.scss";
 import HomeNavbar from "../components/home/HomeNavbar";
 import HomeBody from "../components/home/HomeBody"
 import HomeSales from "../components/home/HomeSales";
