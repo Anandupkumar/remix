@@ -134,6 +134,10 @@ export default function Products() {
         navigate("/cart");
     }
 
+    const handleRedirectToView = () => {
+        navigate("/view-products");
+    }
+
     return (
         <div className="products-container">
             <div className="products-navbar">
@@ -152,7 +156,7 @@ export default function Products() {
                 <div className="row">
                     <div className="products-grid">
                         {products.map((product) => (
-                            <div key={product.id} className="product-card">
+                            <div key={product.id} className="product-card" onClick={handleRedirectToView}>
                                 <img
                                     src={product.image}
                                     alt={product.title}

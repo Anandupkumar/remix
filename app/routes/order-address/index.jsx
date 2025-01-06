@@ -4,8 +4,9 @@ import "../../styles/order-address.scss";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import React from "react";
 import {
-    Outlet,
+    Outlet, useNavigate
 } from "@remix-run/react";
 // export const meta: MetaFunction = () => {
 //   return [
@@ -17,101 +18,75 @@ import {
 
 export default function OrderAddress() {
 
-    const cartItems = [
+    const navigate = useNavigate();
+
+    const addresses = [
         {
-            id: 1,
-            name: "Greenstone's AAC Brick",
-            size: "600mmX200mmX100mm",
-            price: 38,
-            reviews: 18,
-            rating: 5,
-            quantity: 1,
-            image: "/prod-list1.jpeg", // Replace with actual image path
+            type: "Home",
+            address: "Arun Kumar, Ashirvadh Ashokapuram,Kozhikode, Kerala,673303",
         },
         {
-            id: 2,
-            name: "Binding Wire",
-            size: "91 Meter",
-            price: 599,
-            reviews: 18,
-            rating: 5,
-            quantity: 1,
-            image: "/carousel1.jpg", // Replace with actual image path
+            type: "Office",
+            address: "Arun Kumar, Ashirvadh Ashokapuram,Kozhikode, Kerala,673303",
         },
-        {
-            id: 3,
-            name: "Magic Acrylic Wall Putty",
-            size: "20 Ltr",
-            price: 1350,
-            reviews: 18,
-            rating: 5,
-            quantity: 1,
-            image: "/carousel2.png", // Replace with actual image path
-        },
+
     ];
 
-    const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-    const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    const handleAddAddress = () => {
+        navigate("/add-address");
+    }
 
     return (
         <div className="products-container">
             <div className="products-navbar">
                 <Navbar />
             </div>
-            <div className="cart-content-container">
 
-                <div className="cart-container">
-                    <div className="cart-items">
-                        <h2>Order Bill</h2>
-                        {cartItems.map((item) => (
-                            <div key={item.id} className="cart-item">
-                                <img src={item.image} alt={item.name} className="item-image" />
-                                <div className="item-details">
-                                    <h3>{item.name}</h3>
-                                    <p className="item-size">{item.size}</p>
-                                    <div className="item-rating">
-                                        {"★".repeat(item.rating)}
-                                        <span className="reviews">({item.reviews} Reviews)</span>
-                                    </div>
-                                    <p className="item-price">₹{item.price.toFixed(2)}</p>
-                                </div>
-                                <div className="item-actions">
-                                    <span>
-                                        Qty: {item.quantity}
-                                    </span>
-                                    {/* <button className="remove-btn">Remove</button>
-                                    <div className="quantity-control">
-                                        <i className="fa-solid fa-plus quantity-btn" />
-                                        <span className="quantity">{item.quantity}</span>
-                                        <i className="fa-solid fa-minus quantity-btn" />
-                                    </div> */}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="price-details">
-                        <h3>Price Details</h3>
-                        <div className="price-item-container">
-                            <div className="price-item">
-                                <span>{totalItems} items</span>
-                                <span>₹{totalAmount - 899}</span>
-                            </div>
-                            <div className="price-item">
-                                <span>Delivery Charge</span>
-                                <span>₹0</span>
-                            </div>
-                        </div>
-                        <div className="price-total">
-                            <span>Total Amount</span>
-                            <span>₹{totalAmount}</span>
-                        </div>
-                        <button className="buy-now-btn">BUY NOW</button>
+            <div className="address-container">
+                <div className="address-head">
+                    <h2>Address</h2>
+                    <div className="add-address" onClick={handleAddAddress}>
+                        <span className="address-add-btn-cont" >
+                            <i className="fa-solid fa-plus add-address-btn" />
+                        </span>
+                        <h3>
+                            Add Address
+                        </h3>
                     </div>
                 </div>
-
+                <div className="reviews-grid">
+                    {addresses.map((address, index) => (
+                        <div key={index} className="review-card">
+                            <div className="add-address-container">
+                                <div className="select-address-head-container">
+                                    <h3>
+                                        {address.type}
+                                    </h3>
+                                    <div>
+                                        <button className="edit-btn" >Edit</button>
+                                        <button className="change-btn" >Delete</button>
+                                    </div>
+                                </div>
+                                <hr className="select-address-line" />
+                                <div className="select-address">
+                                    <span className="address-select-btn-cont" >
+                                        <i className="fa-solid fa-house add-address-btn" />
+                                    </span>
+                                    <p className="select-address-description">
+                                        {address.address.split(", ").map((line, idx) => (
+                                            <React.Fragment key={idx}>
+                                                {line}
+                                                <br />
+                                            </React.Fragment>
+                                        ))}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
-            {/* <Outlet /> */}
+
             <div className="products-footer">
                 <Footer />
             </div>
