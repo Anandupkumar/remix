@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Form, useNavigation, useNavigate } from "@remix-run/react";
+import { sendOTP } from "../utils/api";
 import "../styles/login/login.scss";
 
 export default function Login() {
@@ -14,14 +15,29 @@ export default function Login() {
         const value = e.target.value.replace(/\D/g, "");
         setPhoneNumber(value);
 
-        console.log(phoneNumber);
-        
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        console.log("Button clicked: ", phoneNumber);
+
+        try {
+            const resp = await sendOTP(phoneNumber);
+            if (resp) {
+                // let resp = {
+                //     verify_id: "d6v5g6e5g6rg56rgr6g5"
+                // }
+                const userData = {
+                    phone: phoneNumber,
+                    verify_id: resp.verify_id
+                };
+                localStorage.setItem("user", JSON.stringify(userData));
+                navigate("/verify-otp", { replace: true });
+            }
+            
+        } catch (err) {
+            console.log("Failed to send OTP: ", err);
+        }
+
     };
 
     const handleSkipLogin = () => {

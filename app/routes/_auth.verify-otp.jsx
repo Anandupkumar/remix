@@ -1,11 +1,22 @@
 import { useNavigate } from "@remix-run/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { verifyOTP } from "../utils/api";
 import "../styles/login/verify-otp.scss";
 
 export default function VerifyOTP() {
     const navigate = useNavigate();
 
     const [otp, setOtp] = useState(["", "", "", ""]);
+    const [storedUser, setStoredUser] = useState(null);
+    // const storedUser = JSON.parse(localStorage.getItem("user"));
+
+    useEffect(() => {
+        // Access localStorage only in the client-side
+        const userData = localStorage.getItem("user");
+        if (userData) {
+            setStoredUser(JSON.parse(userData));
+        }
+    }, []);
 
     const handleChange = (element, index) => {
         const value = element.target.value.replace(/\D/g, ""); // Allow only digits
@@ -29,9 +40,34 @@ export default function VerifyOTP() {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Entered OTP:", otp.join(""));
+        const OTP = otp.join("");
+
+        try {
+            // const data = {
+            //     phone: storedUser.phone,
+            //     verify_id: storedUser.verify_id,
+            //     otp: OTP,
+            // };
+
+            const data = {
+                ...storedUser,
+                otp: OTP
+            };
+
+            console.log(data);
+            
+            const response = await verifyOTP(data);
+            if (response) {
+                localStorage.setItem("authToken", response.token); // Store token
+                navigate("/"); // Redirect to home page
+            }
+
+        } catch (err) {
+            setError("Invalid OTP");
+        }
+
     };
 
     const handleSkipLogin = () => {
