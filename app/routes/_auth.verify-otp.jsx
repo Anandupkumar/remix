@@ -6,7 +6,7 @@ import "../styles/login/verify-otp.scss";
 export default function VerifyOTP() {
     const navigate = useNavigate();
 
-    const [otp, setOtp] = useState(["", "", "", ""]);
+    const [otp, setOtp] = useState(["", "", "", "", "", ""]);
     const [storedUser, setStoredUser] = useState(null);
     // const storedUser = JSON.parse(localStorage.getItem("user"));
 
@@ -26,7 +26,7 @@ export default function VerifyOTP() {
             setOtp(updatedOtp);
 
             // Move to next input box if a value is entered
-            if (value && index < 3) {
+            if (value && index < 5) {
                 document.getElementById(`otp-input-${index + 1}`).focus();
             }
         }
@@ -61,7 +61,12 @@ export default function VerifyOTP() {
             const response = await verifyOTP(data);
             if (response) {
                 localStorage.setItem("authToken", response.token); // Store token
-                navigate("/"); // Redirect to home page
+
+                if (response.user_data.name === null) {
+                    navigate("/profile"); 
+                } else {
+                    navigate("/"); // Redirect to home page
+                }
             }
 
         } catch (err) {

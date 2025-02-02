@@ -33,6 +33,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            width: 20%;
 
             .otp-inputs {
                 display: flex;
@@ -87,4 +88,13 @@
             }
         }
     }
+}
+
+.username {
+    width: 90%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15%;
 }

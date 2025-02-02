@@ -1,2 +1,8 @@
-// const { flatRoutes } = require('remix-flat-routes')
-export const ignoredRouteFiles = ['**/*'];
+/**
+ * @type {import('@remix-run/dev').RemixConfig}
+ */
+export default {
+    serverBuildTarget: "browser", // Ensures client-only mode
+    ignoredRouteFiles: ["**/.*"],  // Ignore hidden files
+  };
+  

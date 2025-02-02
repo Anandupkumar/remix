@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form, useNavigation, useNavigate } from "@remix-run/react";
 import { sendOTP } from "../utils/api";
+// import Loader from "react-loader-spinner";
 import "../styles/login/login.scss";
 
 export default function Login() {
@@ -27,13 +28,13 @@ export default function Login() {
                 //     verify_id: "d6v5g6e5g6rg56rgr6g5"
                 // }
                 const userData = {
-                    phone: phoneNumber,
+                    mobile: phoneNumber,
                     verify_id: resp.verify_id
                 };
                 localStorage.setItem("user", JSON.stringify(userData));
                 navigate("/verify-otp", { replace: true });
             }
-            
+
         } catch (err) {
             console.log("Failed to send OTP: ", err);
         }
@@ -46,6 +47,17 @@ export default function Login() {
 
     return (
         <div className="row">
+
+            {/* <div className="loader-container">
+                <Loader.ThreeDots className="loader"
+                    visible={true}
+                    height={150}
+                    width={150}
+                    color="#EC2329"
+                    ariaLabel="oval-loading"
+                />
+            </div> */}
+
             <div className="col-6 container1">
                 <div className="icon-container">
                     <img src="/logo-login.png" alt="" className="logoLogin" />
