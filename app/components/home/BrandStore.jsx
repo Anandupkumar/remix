@@ -1,44 +1,57 @@
 import "../../styles/components/home/BrandStore.scss";
+import { useState, useEffect, useRef } from "react";
+import { getBrandData } from "../../utils/api";
 
 export default function BrandStore() {
-    const brands = [
+
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const brandsData = await getBrandData();
+    //             console.log("Brands:", brandsData);
+
+    //             if (brandsData) setBrands(brandsData);
+
+    //         } catch (error) {
+    //             console.error("Error fetching data:", error);
+    //         }
+    //     };
+
+    //     fetchData();
+    // }, []);
+
+    const [brands, setBrands] = useState([
         {
             id: 1,
-            logo: "/brand1.png",
+            image_path: "/brand1.png",
             name: "UltraTech Cement",
-            linkText: "Visit Store",
         },
         {
             id: 2,
-            logo: "/brand2.png",
+            image_path: "/brand2.png",
             name: "Cemex",
-            linkText: "Visit Store",
         },
         {
             id: 3,
-            logo: "/brand3.png",
+            image_path: "/brand3.png",
             name: "Heidelberg Materials",
-            linkText: "Visit Store",
         },
         {
             id: 4,
-            logo: "/brand1.png",
+            image_path: "/brand1.png",
             name: "LafargeHolcim",
-            linkText: "Visit Store",
         },
         {
             id: 5,
-            logo: "/brand2.png",
+            image_path: "/brand2.png",
             name: "Anhui Conch Cement",
-            linkText: "Visit Store",
         },
         {
             id: 6,
-            logo: "/brand3.png",
+            image_path: "/brand3.png",
             name: "Vulcan Materials Company",
-            linkText: "Visit Store",
         },
-    ];
+    ]);
 
     return (
         <div className="brands-container">
@@ -47,12 +60,12 @@ export default function BrandStore() {
                 {brands.slice(0, 3).map((brand) => (
                     <div key={brand.id} className="brand-card">
                         <div className="brand-logo">
-                            <img src={brand.logo} alt={brand.name} />
+                            <img src={brand.image_path} alt={brand.name} />
                         </div>
                         <div className="brand-details">
                             <h2 className="brand-name">{brand.name.toUpperCase()}</h2>
                             <a href="#" className="brand-link">
-                                {brand.linkText} &gt;
+                                Visit Store &gt;
                             </a>
                         </div>
                     </div>
@@ -60,16 +73,29 @@ export default function BrandStore() {
                 {brands.slice(3, 6).map((brand) => (
                     <div key={brand.id} className="brand-card">
                         <div className="brand-logo">
-                            <img src={brand.logo} alt={brand.name} />
+                            <img src={brand.image_path} alt={brand.name} />
                         </div>
                         <div className="brand-details">
                             <h2 className="brand-name">{brand.name.toUpperCase()}</h2>
                             <a href="#" className="brand-link">
-                                {brand.linkText} &gt;
+                                Visit Store &gt;
                             </a>
                         </div>
                     </div>
                 ))}
+                {/* {brands.slice(6, 9).map((brand) => (
+                    <div key={brand.id} className="brand-card">
+                        <div className="brand-logo">
+                            <img src={brand.image_path} alt={brand.name} />
+                        </div>
+                        <div className="brand-details">
+                            <h2 className="brand-name">{brand.name.toUpperCase()}</h2>
+                            <a href="#" className="brand-link">
+                                Visit Store &gt;
+                            </a>
+                        </div>
+                    </div>
+                ))} */}
             </div>
         </div>
     );

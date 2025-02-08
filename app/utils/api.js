@@ -1,7 +1,7 @@
 // const API_BASE_URL = "https://mspotmicros.appcloudconsole.com/micros/web_src"; // Replace with your API URL
-const API_BASE_URL = "http://188.245.165.80/micros/index.php/web_src";
+// const API_BASE_URL = "http://188.245.165.80/micros/index.php/web_src";;
 // const API_BASE_URL = "http://ecommerce.welkinwitssolutions.com/lrg/micros/web_src";
-// http://188.245.165.80/micros/index.php/web_src
+const API_BASE_URL = "https://ecommerceservice.appcloudconsole.com/lrg/micros/web_src"
 
 // Generic function to make API requests
 export async function apiRequest(endpoint, method = "GET", body = null, headers = {}) {
@@ -69,6 +69,15 @@ export async function getTopSliderData() {
 
 export async function getCategoryCarousel() {
     const response = await apiRequest("/api/app/display/categories", "GET");
+    if (response?.status?.code === 200) {
+        return response.data;
+    } else {
+        return false;
+    }
+}
+
+export async function getBrandData() {
+    const response = await apiRequest("/api/app/display/brands", "GET");
     if (response?.status?.code === 200) {
         return response.data;
     } else {

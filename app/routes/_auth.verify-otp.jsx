@@ -8,6 +8,7 @@ export default function VerifyOTP() {
 
     const [otp, setOtp] = useState(["", "", "", "", "", ""]);
     const [storedUser, setStoredUser] = useState(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     // const storedUser = JSON.parse(localStorage.getItem("user"));
 
     useEffect(() => {
@@ -41,6 +42,7 @@ export default function VerifyOTP() {
     };
 
     const handleSubmit = async (e) => {
+        setIsSubmitting(true);
         e.preventDefault();
         const OTP = otp.join("");
 
@@ -62,15 +64,20 @@ export default function VerifyOTP() {
             if (response) {
                 localStorage.setItem("authToken", response.token); // Store token
 
-                if (response.user_data.name === null) {
-                    navigate("/profile"); 
-                } else {
-                    navigate("/"); // Redirect to home page
-                }
+                navigate("/"); 
+                // if (response.user_data.name === null) {
+                //     navigate("/profile"); 
+                // } else {
+                //     navigate("/"); // Redirect to home page
+                // }
+            } else {
+                setIsSubmitting(false);
             }
 
         } catch (err) {
-            setError("Invalid OTP");
+            // setError("Invalid OTP");
+            setIsSubmitting(false);
+            console.log("Invalid OTP");
         }
 
     };
@@ -102,7 +109,7 @@ export default function VerifyOTP() {
                         ))}
                     </div>
                     <button type="submit" className="submit-button">
-                        Submit
+                        {isSubmitting ? "Submitting..." : "Submit"}
                     </button>
                 </form>
                 <div className="divider">or</div>

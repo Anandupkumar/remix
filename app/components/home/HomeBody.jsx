@@ -48,14 +48,14 @@ export default function HomeBody() {
     const [showLeftArrow, setShowLeftArrow] = useState(0);
 
     const categories = [
-        { title: "Tapes & Adhesives", image: "/product-cat1.jpg" },
-        { title: "Abrasives", image: "/product-cat2.jpg" },
-        { title: "Trolleys & Ladders", image: "/product-cat1.jpg" },
-        { title: "Plumbing & Sanitary wares", image: "/product-cat2.jpg" },
-        { title: "Safety & PPE", image: "/product-cat1.jpg" },
-        { title: "Construction Materials", image: "/product-cat2.jpg" },
-        { title: "Safety & PPE", image: "/product-cat1.jpg" },
-        { title: "Construction Materials", image: "/product-cat2.jpg" },
+        { name: "Tapes & Adhesives", image_path: "/product-cat1.jpg" },
+        { name: "Abrasives", image_path: "/product-cat2.jpg" },
+        { name: "Trolleys & Ladders", image_path: "/product-cat1.jpg" },
+        { name: "Plumbing & Sanitary wares", image_path: "/product-cat2.jpg" },
+        { name: "Safety & PPE", image_path: "/product-cat1.jpg" },
+        { name: "Construction Materials", image_path: "/product-cat2.jpg" },
+        { name: "Safety & PPE", image_path: "/product-cat1.jpg" },
+        { name: "Construction Materials", image_path: "/product-cat2.jpg" },
     ];
 
     return (
@@ -72,26 +72,27 @@ export default function HomeBody() {
                         // className="custom-carousel"
                         className="carousel-container">
 
-                        {/* {sliderImages.map((slider, index) => (
-                            <div className="image-container">
+                        {sliderImages.map((slider, index) => (
+                            <div className="image-container" key={index}>
                                 <img src={slider.image_path} />
-                                <p className="legend">Tools and accessories to the <br /><span className="desc-last-word"> construction </span></p>
-                                <button className="shop-now-btn">Shop Now</button>
+                                {/* <p className="legend">Tools and accessories to the <br /><span className="desc-last-word"> construction </span></p>
+                                <button className="shop-now-btn">Shop Now</button> */}
                             </div>
-                        ))} */}
+                        ))}
 
-                        <div className="image-container">
+                        {/* <div className="image-container"> */}
                             {/* <img src="/carousel1.jpg" /> */}
-                            <img src="https://mspotmicros.appcloudconsole.com/micros/uploads/images/elastic/wF88yhgk4emp6xSEEImzncwl7jyDBBeyuTFH5Skx.png" />
+                            {/* <img src="https://mspotmicros.appcloudconsole.com/micros/uploads/images/elastic/wF88yhgk4emp6xSEEImzncwl7jyDBBeyuTFH5Skx.png" /> */}
                             {/* <p className="legend">Tools and accessories to the <br /><span className="desc-last-word"> construction </span></p>
                             <button className="shop-now-btn">Shop Now</button> */}
-                        </div>
-                        <div className="image-container">
+                        {/* </div>
+                        <div className="image-container"> */}
                             {/* <img src="/carousel2.png" /> */}
-                            <img src="https://mspotmicros.appcloudconsole.com/micros/uploads/images/elastic/4lYwEfjZvLM1zHwAOBGzyitIHhWtUEpCXiFTkZnL.jpg" />
+                            {/* <img src="https://mspotmicros.appcloudconsole.com/micros/uploads/images/elastic/4lYwEfjZvLM1zHwAOBGzyitIHhWtUEpCXiFTkZnL.jpg" /> */}
                             {/* <p className="legend">Tools and accessories to the <br /><span className="desc-last-word"> construction </span></p>
                             <button className="shop-now-btn">Shop Now</button> */}
-                        </div>
+                        {/* </div> */}
+                        
                         {/* <div>
                             <img src="assets/3.jpeg" />
                             <p className="legend">Legend 3</p>
@@ -140,10 +141,11 @@ export default function HomeBody() {
                 )}
 
                 <div className="categories-container" ref={scrollContainerRef}>
-                    {categories.map((category, index) => (
+                    {/* {categories.map((category, index) => ( */}
+                    {categoryCarousel.map((category, index) => (
                         <div className="category-card" key={index}>
-                            <img src={category.image} alt={category.title} className="category-image" />
-                            <div className="category-title">{category.title}</div>
+                            <img src={category.image_path} alt={category.name} className="category-image" />
+                            <div className="category-title">{category.name}</div>
                         </div>
                     ))}
                 </div>

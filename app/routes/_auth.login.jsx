@@ -7,8 +7,9 @@ import "../styles/login/login.scss";
 export default function Login() {
 
     const [phoneNumber, setPhoneNumber] = useState("");
-    const navigation = useNavigation();
-    const isSubmitting = navigation.state === "submitting";
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    // const navigation = useNavigation();
+    // const isSubmitting = navigation.state === "submitting";
 
     const navigate = useNavigate();
 
@@ -20,6 +21,7 @@ export default function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsSubmitting(true);
 
         try {
             const resp = await sendOTP(phoneNumber);
@@ -33,9 +35,12 @@ export default function Login() {
                 };
                 localStorage.setItem("user", JSON.stringify(userData));
                 navigate("/verify-otp", { replace: true });
+            } else {
+                setIsSubmitting(false);
             }
 
         } catch (err) {
+            setIsSubmitting(false);
             console.log("Failed to send OTP: ", err);
         }
 
