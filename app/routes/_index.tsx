@@ -1,4 +1,5 @@
 import type { MetaFunction } from "@remix-run/node";
+import { useState, useEffect } from "react";
 // import "../../styles/home.scss";
 import HomeNavbar from "../components/home/HomeNavbar";
 import HomeBody from "../components/home/HomeBody"
@@ -19,6 +20,8 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
+  
+
   return (
     <>
       <div className="home-header-container">

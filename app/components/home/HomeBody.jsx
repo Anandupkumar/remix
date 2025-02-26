@@ -29,8 +29,8 @@ export default function HomeBody() {
                     getCategoryCarousel() 
                 ]);
 
-                console.log("Top Sliders:", topSliders);
-                console.log("Categories:", categoryCarousel);
+                // console.log("Top Sliders:", topSliders);
+                // console.log("Categories:", categoryCarousel);
 
                 if (topSliders) setSliderImages(topSliders);
                 if (categoryCarousel) setCategoryCarousel(categoryCarousel);

@@ -14,7 +14,7 @@ export default function ProductsView() {
     const [viewImage, setViewImage] = useState(0);
 
     const handleImageView = (i) => {
-        console.log(i);
+        // console.log(i);
 
         setViewImage(i);
     }

@@ -1,14 +1,35 @@
 import "../../styles/components/home/HomeNavbar.scss";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useNavigate } from "@remix-run/react";
+import { useState, useEffect } from "react";
 
 export default function HomeNavbar() {
 
     const navigate = useNavigate();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [authToken, setAuthToken] = useState(false);
+
+    useEffect(() => {
+        const isVerified = localStorage.getItem("authToken");
+        if (isVerified && isVerified !== "") {
+            setAuthToken(true);
+        } else {
+            setAuthToken(false);
+        }
+
+    }, []);
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
 
     const handleRedirectToLogin = () => {
         navigate("/login");
     }
+
+    // const handleRedirectToProfile = () => {
+    //     navigate("/view-profile");
+    // }
 
     const handleRedirectToCart = () => {
         navigate("/cart");
@@ -17,15 +38,19 @@ export default function HomeNavbar() {
     return (
         <div>
             <div className="top-header">
-                <div className="logo-container">
+                {/* <div className="logo-container">
                     <img
                         src="/logo-login.png"
                         alt="Lulu Rayyan Group"
                         className="logo"
                     />
-                    {/* <span className="sub-title">LULU RAYYAN GROUP W.L.L</span> */}
-                </div>
+                </div> */}
                 <div className="search-container">
+                    <img
+                        src="/logo-login.png"
+                        alt="Lulu Rayyan Group"
+                        className="logo"
+                    />
                     <input
                         type="text"
                         placeholder="What are you looking for?"
@@ -36,12 +61,22 @@ export default function HomeNavbar() {
                     </button>
                 </div>
                 <div className="user-actions">
-                    <span onClick={handleRedirectToLogin} className="action-item"><i className="fas fa-user" /> Login</span>
+                    {authToken ?
+                        <span className="action-item"><i className="fas fa-user" /> Profile</span>
+                        : <span onClick={handleRedirectToLogin} className="action-item"><i className="fas fa-user" /> Login</span>
+                    }
+
                     <span onClick={handleRedirectToCart} className="action-item"><i className="fas fa-cart-shopping" /> Cart</span>
                 </div>
             </div>
+
             <nav className="bottom-header">
-                <ul className="nav-links">
+                <div className="menu-icon" onClick={toggleMenu}>
+                    {isMenuOpen ?
+                        <i className="fa-solid fa-xmark" />
+                        : <i className="fa-solid fa-bars" />}
+                </div>
+                <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
                     <li>HOME</li>
                     <li>
                         CATEGORY <i className="fas fa-chevron-down" />
@@ -55,6 +90,7 @@ export default function HomeNavbar() {
                     <li>CONTACT US</li>
                 </ul>
             </nav>
+
         </div>
     );
 }

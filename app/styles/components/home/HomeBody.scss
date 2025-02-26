@@ -1,20 +1,3 @@
-// .carousel .slide .legend {
-//     transition: all .5s ease-in-out;
-//     position: absolute;
-//     bottom: 40px;
-//     left: 50%;
-//     margin-left: -45%;
-//     width: 90%;
-//     border-radius: 10px;
-//     background: none !important;
-//     color: #fff !important;
-//     padding: 10px;
-//     font-size: 35px !important;
-//     text-align: center;
-//     /* opacity: 0.25; */
-//     transition: opacity .35s ease-in-out;
-// }
-
 .body-container {
     margin: 20px 25px;
 }
@@ -26,9 +9,10 @@
 }
 
 .carousel-container {
-    height: 485px;
+    // height: 485px;
     /* Set the desired height */
     overflow: hidden;
+    margin-bottom: 3%;
     /* Ensure no extra content is displayed */
 }
 
@@ -101,9 +85,6 @@
     text-align: start
 }
 
-
-
-
 .offer-container {
     display: flex;
     flex-direction: column;
@@ -113,18 +94,11 @@
 .cont-1 {
     height: 45%;
     position: relative;
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
     overflow: hidden;
     border-radius: 10px;
 }
 
 .blog-image {
-    // width: -webkit-fill-available;
-    // object-fit: cover;
-    // z-index: 1;
-
     position: absolute;
     top: 0;
     left: 0;
@@ -136,12 +110,6 @@
 
 
 .promo-content {
-    // position: relative;
-    // z-index: 2;
-    // /* Place the content above the image */
-    // color: white;
-    // text-align: center;
-
     position: relative;
     z-index: 2;
     color: white;
@@ -168,12 +136,6 @@
 }
 
 .savings-content {
-    // position: relative;
-    // z-index: 2;
-    // /* Place the content above the image */
-    // color: white;
-    // text-align: center;
-
     position: relative;
     z-index: 2;
     text-align: start;
@@ -207,68 +169,76 @@
 }
 
 
-// .product-category-container {
-//     margin-top: 1%;
-// }
+/* Tablets (Max Width: 1200px) */
+@media (max-width: 1200px) {
 
-// .product-category {
-//     display: flex;
-//     flex-direction: column;
-// }
+    .body-container {
+        margin: 2px 2px;
+    }
 
-// .product-category-img {
-//     width: 30%;
-// }
-// gap:30%
+    .content-container {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 15px;
+        display: flex;
+        flex-direction: column;
+    }
 
-// ********************************************
+    .carousel-container {
+        margin-bottom: 2%;
+    }
 
-// .categories-container {
-//     margin-top: 35px;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     gap: 16px;
-//     overflow-x: scroll;
-//     padding: 20px;
-//     scroll-behavior: smooth;
+    .col-8 {
+        flex: 0 0 auto;
+        width: 99.666667%;
+        // height: 100%;
+    }
 
-// }
 
-// .category-card {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     text-align: center;
-//     width: 280px;
-//     background-color: white;
-//     border: 1px solid #ddd;
-//     border-radius: 8px;
-//     overflow: hidden;
-//     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-//     transition: transform 0.2s;
-// }
+    .offer-container {
+        display: flex;
+        flex-direction: row;
+        gap: 10%;
+    }
 
-// .category-card:hover {
-//     transform: scale(1.05);
-// }
+    .col-4 {
+        width: 99.333333%;
+    }
 
-// .category-image {
-//     width: 100%;
-//     height: 160px;
-//     object-fit: cover;
-// }
+    .cont-1 {
+        height: 165px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        width: 100%;
+    }
+}
 
-// .category-title {
-//     background-color: #EC2329;
-//     color: white;
-//     padding: 10px 0;
-//     font-size: 14px;
-//     font-weight: bold;
-//     width: 100%;
-// }
 
-// ********************************************
+@media (max-width: 600px) {
+    .carousel-container {
+        // height: 250px;
+        margin-bottom: 4%;
+    }
+
+    .promo-content h3 {
+        font-size: 1.5rem;
+    }
+
+    .savings-content h5 {
+        font-size: 1.3rem;
+    }
+
+    .savings-shop-now-btn {
+        padding: 3px 10px;
+        font-size: 14px;
+    }
+
+    .savings-highlight {
+        font-size: 1.3rem;
+    }
+}
+
 
 .categories-wrapper {
     position: relative;
@@ -284,11 +254,13 @@
     padding: 20px;
     scroll-behavior: smooth;
     white-space: nowrap;
-    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    scrollbar-width: none;
+    /* Hide scrollbar for Firefox */
 }
 
 .categories-container::-webkit-scrollbar {
-    display: none; /* Hide scrollbar for Chrome, Safari */
+    display: none;
+    /* Hide scrollbar for Chrome, Safari */
 }
 
 .category-card {
@@ -350,84 +322,3 @@
 .scroll-button.right {
     right: 10px;
 }
-
-// ********************************************
-
-// .carousel-content h1 span {
-//     color: #e74c3c;
-//     /* Red color for emphasis */
-// }
-
-// .shop-now-btn {
-//     background-color: #000;
-//     color: #fff;
-//     border: none;
-//     padding: 10px 20px;
-//     font-size: 1rem;
-//     cursor: pointer;
-//     border-radius: 5px;
-//     text-transform: uppercase;
-//     /* display: flex !important
-// ; */
-//     position: sticky;
-//     bottom: 60%;
-// }
-
-// .shop-now-btn:hover {
-//     background-color: #e74c3c;
-// }
-
-// .carousel-wrapper {
-//     margin: 0 auto;
-//     width: 90%;
-//     /* Adjust as needed */
-// }
-
-// .custom-carousel .carousel-slide {
-//     display: flex;
-//     align-items: center;
-//     background-color: #fce5cd;
-//     /* Match background color */
-//     position: relative;
-//     height: 400px;
-//     /* Set desired height */
-// }
-
-// .carousel-content {
-//     flex: 1;
-//     padding: 20px;
-// }
-
-// .carousel-content h1 {
-//     font-size: 2.5rem;
-//     font-weight: bold;
-//     color: #000;
-//     margin-bottom: 20px;
-// }
-
-// .carousel-content h1 span {
-//     color: #e74c3c;
-//     /* Red color for emphasis */
-// }
-
-// .shop-now-btn {
-//     background-color: #000;
-//     color: #fff;
-//     border: none;
-//     padding: 10px 20px;
-//     font-size: 1rem;
-//     cursor: pointer;
-//     border-radius: 5px;
-//     text-transform: uppercase;
-// }
-
-// .shop-now-btn:hover {
-//     background-color: #333;
-// }
-
-// .carousel-image {
-//     height: 100%;
-//     object-fit: contain;
-//     flex: 1;
-//     padding-right: 20px;
-// }

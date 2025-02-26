@@ -9,13 +9,19 @@ export default function VerifyOTP() {
     const [otp, setOtp] = useState(["", "", "", "", "", ""]);
     const [storedUser, setStoredUser] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    // const storedUser = JSON.parse(localStorage.getItem("user"));
+    const [authToken, setAuthToken] = useState(false);
 
     useEffect(() => {
-        // Access localStorage only in the client-side
-        const userData = localStorage.getItem("user");
-        if (userData) {
-            setStoredUser(JSON.parse(userData));
+        const isVerified = localStorage.getItem("authToken");
+        if (isVerified && isVerified !== "") {
+            setAuthToken(true);
+            navigate("/");
+        } else {
+            setAuthToken(false);
+            const userData = localStorage.getItem("user");
+            if (userData) {
+                setStoredUser(JSON.parse(userData));
+            }
         }
     }, []);
 
@@ -58,13 +64,13 @@ export default function VerifyOTP() {
                 otp: OTP
             };
 
-            console.log(data);
-            
+            // console.log(data);
+
             const response = await verifyOTP(data);
             if (response) {
                 localStorage.setItem("authToken", response.token); // Store token
 
-                navigate("/"); 
+                navigate("/");
                 // if (response.user_data.name === null) {
                 //     navigate("/profile"); 
                 // } else {

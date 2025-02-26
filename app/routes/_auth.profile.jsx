@@ -11,7 +11,7 @@ export default function ProfileSetup() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log(name);
+        // console.log(name);
 
         const data = {
             name,

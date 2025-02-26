@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, useNavigation, useNavigate } from "@remix-run/react";
 import { sendOTP } from "../utils/api";
 // import Loader from "react-loader-spinner";
@@ -8,10 +8,21 @@ export default function Login() {
 
     const [phoneNumber, setPhoneNumber] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [authToken, setAuthToken] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const isVerified = localStorage.getItem("authToken");
+        if (isVerified && isVerified !== "") {
+            setAuthToken(true);
+            navigate("/");
+        } else {
+            setAuthToken(false);
+        }
+
+    }, []);
     // const navigation = useNavigation();
     // const isSubmitting = navigation.state === "submitting";
-
-    const navigate = useNavigate();
 
     const handleInputChange = (e) => {
         const value = e.target.value.replace(/\D/g, "");

@@ -87,3 +87,31 @@
     padding-right: 6%;
     padding-left: 6%;
 }
+
+
+/* Tablets (Max Width: 1200px) */
+@media (max-width: 1200px) {
+    .home-container {
+        flex-direction: column;
+        padding: 2% 2%;
+    }
+
+    .mega-sales,
+    .offer-sales {
+        margin-bottom: 20px;
+    }
+
+    // .mega-sales h2,
+    // .offer-sales h2 {
+    //     margin-left: 0;
+    // }
+
+    // .mega-sales-grid {
+    //     margin: 0;
+    // }
+
+    // .offer-banner img {
+    //     padding-right: 0;
+    //     padding-left: 0;
+    // }
+}
