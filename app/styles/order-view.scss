@@ -126,16 +126,6 @@
     margin-top: 10px;
 }
 
-.add-address-container {
-    // padding-right: 20px;
-    // padding-left: 20px;
-    // padding-top: 15px;
-    // padding-bottom: 5px;
-    // background-color: #F7F7F7;
-    // border-radius: 10px;
-    // margin-bottom: 15px;
-}
-
 .add-address {
     display: flex;
     flex-direction: row;
@@ -164,8 +154,6 @@
 }
 
 .add-address-description {
-    // padding-left: 48px;
-    // padding-right: 48px;
     color: #494949;
 }
 
@@ -183,8 +171,6 @@
 }
 
 .price-total {
-    // font-weight: bold;
-    /* background-color: #F7F7F7; */
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 20px;
@@ -248,13 +234,6 @@
 }
 
 .order-updates {
-    // font-family: Arial, sans-serif;
-    // border: 1px solid #ccc;
-    // border-radius: 8px;
-    // padding: 20px;
-    // max-width: 100%;
-    // background-color: #fff;
-
     font-family: Arial, sans-serif;
     border: 1px solid #757575;
     border-radius: 8px;
@@ -330,4 +309,67 @@
 .date {
     color: gray;
     font-size: 14px;
+}
+
+
+/* Responsive Styles */
+@media (max-width: 1000px) {
+
+    .item-update-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .reviews-grid {
+        grid-template-columns: repeat(auto-fit, minmax(48%, 1fr));
+        margin-bottom: 85px;
+    }
+
+    .order-updates {
+        margin-top: 15%;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .item-actions {
+        gap: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    .address-container {
+        padding: 4% 4% 3% 4%;
+    }
+
+    .reviews-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+        gap: 20px;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .item-details {
+        margin-left: 0;
+    }
+
+    .item-actions {
+        gap: 20px;
+        flex-direction: column;
+    }
+
+    .price-details {
+        padding: 15px;
+    }
+
+    .delivery-item-container {
+        flex-direction: column;
+        gap: 10px;
+    }
 }

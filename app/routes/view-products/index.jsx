@@ -66,8 +66,6 @@ export default function ProductsView() {
             </div>
 
             <div className="product-details">
-                {/* Product Image Gallery */}
-
                 <div className="image-gallery ">
                     <img src={product.images[viewImage]} alt={product.name} className="main-image" />
                     <div className="thumbnail-container">
@@ -77,12 +75,10 @@ export default function ProductsView() {
                     </div>
                 </div>
 
-                {/* Product Details */}
                 <div className="product-info ">
                     <h1 className="product-title">{product.name}</h1>
                     <p className="product-dimensions">{product.dimensions}</p>
 
-                    {/* Rating and Reviews */}
                     <div className="rating-reviews">
                         <div className="rating">
                             {Array(product.rating)
@@ -95,11 +91,7 @@ export default function ProductsView() {
                     </div>
 
                     <div className="price-quantity-container">
-
-                        {/* Price */}
                         <p className="price">₹{product.price}.00</p>
-
-                        {/* Quantity Selector */}
                         <div className="quantity-selector">
                             <button className="quantity-btn">-</button>
                             <span className="quantity-value">1</span>
@@ -108,13 +100,11 @@ export default function ProductsView() {
 
                     </div>
 
-                    {/* Description */}
                     <div className="description">
                         <h2>Description</h2>
                         <p>{product.description}</p>
                     </div>
 
-                    {/* Add to Cart Button */}
                     <button className="add-to-cart-btn">ADD TO CART
                         <i className="fa-solid fa-cart-shopping" style={{ marginLeft: "5px" }} />
                     </button>

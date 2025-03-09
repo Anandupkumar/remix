@@ -130,7 +130,8 @@ export default function Products() {
         },
     ];
 
-    const handleRedirectToCart = () => {
+    const handleRedirectToCart = (event) => {
+        event.stopPropagation();
         navigate("/cart");
     }
 

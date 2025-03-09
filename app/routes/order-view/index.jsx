@@ -4,9 +4,11 @@ import "../../styles/order-view.scss";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import { Outlet, useNavigate } from "@remix-run/react";
+import { getOrderDetailData } from "../../utils/api.js"
+import { useLocation } from "react-router-dom";
 // export const meta: MetaFunction = () => {
 //   return [
 //     { title: "New Remix App" },
@@ -15,20 +17,29 @@ import { Outlet, useNavigate } from "@remix-run/react";
 // };
 
 export default function OrderView() {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const orderId = searchParams.get("order");
+  const itemId = searchParams.get("item");
+
   const navigate = useNavigate();
 
+  const [authToken, setAuthToken] = useState(false);
+  const [orderDetails, setOrderDetails] = useState([]);
+  const [updates, setUpdates] = useState([]);
+  const [finalStatusText, setFinalStatusText] = useState("");
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
-      orderId: "OD5541258974555663255",
+      order_id: "OD5541258974555663255",
       name: "Greenstone's AAC Brick",
       size: "600mmX200mmX100mm",
-      price: 38,
+      selling_price: 38,
       reviews: 18,
       rating: 5,
       quantity: 1,
-      image: "/prod-list1.jpeg",
-      deliveryDate: "12/05/2024",
+      image_paths: ["/prod-list1.jpeg"],
+      order_item_status: "12/05/2024",
     },
   ]);
 
@@ -37,18 +48,60 @@ export default function OrderView() {
     address: "Arun Kumar, Ashirvadh Ashokapuram,Kozhikode, Kerala,673303",
   };
 
-  const updates = [
-    { status: "Order Confirmed", date: "Fri, 22nd Nov 2024" },
-    { status: "Shipped", date: "Mon, 25th Nov 2024" },
-    { status: "Out For Delivery", date: "Fri, 29th Nov 2024" },
-    { status: "Delivered", date: "Fri, 29th Nov 2024" },
-  ];
+  // const updates = [
+  //   { status: "Order Confirmed", date: "Fri, 22nd Nov 2024" },
+  //   { status: "Shipped", date: "Mon, 25th Nov 2024" },
+  //   { status: "Out For Delivery", date: "Fri, 29th Nov 2024" },
+  //   { status: "Delivered", date: "Fri, 29th Nov 2024" },
+  // ];
 
-  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-  const totalAmount = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
+
+  useEffect(() => {
+    fetchOrderDetailData();
+  }, []);
+
+  const fetchOrderDetailData = async () => {
+    const isVerified = localStorage.getItem("authToken");
+
+    if (isVerified && isVerified !== "") {
+      setAuthToken(true);
+
+      try {
+        const res = await getOrderDetailData(orderId, itemId);
+
+        if (res) {
+          setOrderDetails(res.order_data)
+
+          const rawUpdates = [
+            { status: "Order Placed", date: res.order_data[0].ordered_at },
+            { status: "Packed", date: res.order_data[0].packed_at },
+            { status: "Shipped", date: res.order_data[0].shipped_at },
+            { status: "Delivered", date: res.order_data[0].delivered_at }
+          ];
+
+          const updates = rawUpdates.filter(update => update.date && update.date.trim() !== "");
+          setUpdates(updates);
+
+          const lastCompleted = [...updates].reverse().find(u => u.date && u.date.trim() !== "");
+          const finalStatusText = lastCompleted
+            ? `${lastCompleted.status} at ${lastCompleted.date}`
+            : "No updates yet";
+
+          setFinalStatusText(finalStatusText);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    } else {
+      navigate("/");
+    }
+  }
+
+  // const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  // const totalAmount = orderItems.reduce(
+  //   (acc, item) => acc + Number(item.selling_price),
+  //   0
+  // );
 
   const handleAddAddress = () => {
     navigate("/add-address");
@@ -72,34 +125,32 @@ export default function OrderView() {
         <div className="delivery-item-container">
           <div className="item-update-container">
             <div className="reviews-grid">
-              {cartItems.map((item, index) => (
-                <div key={item.id} className="cart-item">
+              {orderDetails.map((item, index) => (
+                <div key={item.order_id} className="cart-item">
                   <img
-                    src={item.image}
+                    src={item.image_paths[0]}
                     alt={item.name}
                     className="item-image"
                   />
                   <div className="item-details">
                     <p className="item-size" style={{ marginBottom: "10px" }}>
                       {" "}
-                      Order ID - {item.orderId}
+                      Order ID - {item.order_id}
                     </p>
-                    <h3>Delivered on {formatDate(item.deliveryDate)}</h3>
+                    {/* <h3>Delivered on {formatDate(item.order_item_status)}</h3> */}
+                    <h3>{finalStatusText}</h3>
                     <p className="item-size">{item.name}</p>
-                    <p className="item-size">{item.size}</p>
-                    {/* <div className="item-rating">
-                    {"★".repeat(item.rating)}
-                    <span className="reviews">({item.reviews} Reviews)</span>
-                    </div> */}
-                    <p className="item-price">₹{item.price.toFixed(2)}</p>
+                    {/* <p className="item-size">{item.size}</p> */}
+                    <p className="item-price">₹{Number(item.selling_price).toFixed(2)}</p>
 
                     <span className="item-delivery">
-                      Delivered on {item.deliveryDate}
+                      Ordered at {item.ordered_at}
+                      {/* {finalStatusText} */}
                     </span>
                   </div>
 
                   <div className="item-actions">
-                    <span>Qty: {item.quantity}</span>
+                    {/* <span>Qty: {item.quantity}</span> */}
                   </div>
                 </div>
               ))}
@@ -123,11 +174,8 @@ export default function OrderView() {
           </div>
 
           <div className="price-details">
-            <div className="add-address-container">
+            {/* <div className="add-address-container">
               <div className="add-address">
-                {/* <span className="address-add-btn-cont">
-                  <i className="fa-solid fa-plus add-address-btn" />
-                </span> */}
                 <h3 className="add-address-head">Shipping Details</h3>
               </div>
               <p className="add-address-description">
@@ -139,16 +187,16 @@ export default function OrderView() {
                 ))}
               </p>
             </div>
-            <hr />
+            <hr /> */}
             <h3>Price Details</h3>
             <div className="price-item-container">
-              <div className="price-item">
+              {/* <div className="price-item">
                 <span>List price</span>
                 <span>₹{totalAmount}</span>
-              </div>
+              </div> */}
               <div className="price-item">
-                <span>Selling price</span>
-                <span>₹{totalAmount}</span>
+                <span>Selling price</span>₹{orderDetails[0]?.selling_price}
+                {/* <span>₹{orderDetails[0].selling_price}</span> */}
               </div>
               <div className="price-item">
                 <span>Discount</span>
@@ -158,22 +206,22 @@ export default function OrderView() {
                 <span>Delivery Charge</span>
                 <span>₹0</span>
               </div>
-              <div className="price-item">
+              {/* <div className="price-item">
                 <span>Platform Fee</span>
                 <span>₹0</span>
-              </div>
+              </div> */}
             </div>
             <div className="price-total">
               <span>Total Amount</span>
-              <span>₹{totalAmount}</span>
+              <span>₹{orderDetails[0]?.selling_price}</span>
             </div>
 
             <div className="experience-rating">
               <p>
-                <b>• Cash On Delivery:</b> ₹38.0
+                <b>• Cash On Delivery:</b> ₹{orderDetails[0]?.selling_price}
               </p>
               <div className="rating-section">
-                <div className="rate-rating">
+                {/* <div className="rate-rating">
                   <p>Rate your experience</p>
                   <div className="stars">
                     <span className="star">&#9733;</span>
@@ -184,7 +232,7 @@ export default function OrderView() {
                     <span className="rating-text">(Great)</span>
                   </div>
                 </div>
-                <p className="return-policy">Return policy ended on Dec 06</p>
+                <p className="return-policy">Return policy ended on Dec 06</p> */}
               </div>
             </div>
           </div>

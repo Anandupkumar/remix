@@ -30,8 +30,8 @@
 }
 
 .item-image {
-    width: 20%;
-    height: 20%;
+    width: 160px;
+    height: 160px;
     object-fit: contain;
 }
 
@@ -204,7 +204,7 @@
     padding-right: 20px;
     padding-left: 20px;
     padding-top: 15px;
-    padding-bottom: 5px;
+    padding-bottom: 30px;
     background-color: #F7F7F7;
     border-radius: 10px;
     margin-bottom: 15px;
@@ -221,7 +221,7 @@
     display: flex;
     flex-direction: row;
     gap: 15px;
-    height: 28%;
+    height: 50px;
 }
 
 .address-select-btn-cont {
@@ -326,6 +326,23 @@
     margin-bottom: 5%;
 }
 
+.empty-cart {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    justify-content: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+// .empty-cart-label {
+//     display: flex;
+//     margin-bottom: 7%;
+//     margin-top: 5%;
+//     justify-content: center;
+// }
+
 .order-placed-img {
     width: 15%;
     margin-bottom: 1%;
@@ -357,6 +374,42 @@
     background-color: #00509e;
 }
 
+.qty-loading {
+    opacity: 0.5;
+    pointer-events: none;
+    filter: blur(1px);
+    transition: opacity 0.3sease;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 500;
+    // background-color: white;
+    padding: 10px 12px;
+    border-radius: 6px;
+    // border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.payment-option input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: green;
+    cursor: pointer;
+}
+
+.or-text {
+    // align-self: center;
+    padding: 10px 12px;
+    font-weight: 500;
+    color: #555;
+}
+
+
 @media (max-width: 1000px) {
     .cart-container {
         flex-direction: column;
@@ -364,6 +417,11 @@
 
     .address-select-btn-cont {
         height: 51px;
+    }
+
+    .item-image {
+        width: 110px;
+        height: 110px;
     }
 }
 
@@ -483,5 +541,10 @@
         cursor: pointer;
         transition: background-color 0.3s;
         margin-bottom: 15px;
+    }
+
+    .item-image {
+        width: 80px;
+        height: 80px;
     }
 }

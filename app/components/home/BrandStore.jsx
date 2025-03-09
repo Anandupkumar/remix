@@ -4,53 +4,53 @@ import { getBrandData } from "../../utils/api";
 
 export default function BrandStore() {
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const brandsData = await getBrandData();
-    //             console.log("Brands:", brandsData);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const brandsData = await getBrandData();
+                console.log("Brands:", brandsData);
 
-    //             if (brandsData) setBrands(brandsData);
+                if (brandsData) setBrands(brandsData);
 
-    //         } catch (error) {
-    //             console.error("Error fetching data:", error);
-    //         }
-    //     };
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
 
-    //     fetchData();
-    // }, []);
+        fetchData();
+    }, []);
 
     const [brands, setBrands] = useState([
-        {
-            id: 1,
-            image_path: "/brand1.png",
-            name: "UltraTech Cement",
-        },
-        {
-            id: 2,
-            image_path: "/brand2.png",
-            name: "Cemex",
-        },
-        {
-            id: 3,
-            image_path: "/brand3.png",
-            name: "Heidelberg Materials",
-        },
-        {
-            id: 4,
-            image_path: "/brand1.png",
-            name: "LafargeHolcim",
-        },
-        {
-            id: 5,
-            image_path: "/brand2.png",
-            name: "Anhui Conch Cement",
-        },
-        {
-            id: 6,
-            image_path: "/brand3.png",
-            name: "Vulcan Materials Company",
-        },
+        // {
+        //     id: 1,
+        //     image_path: "/brand1.png",
+        //     name: "UltraTech Cement",
+        // },
+        // {
+        //     id: 2,
+        //     image_path: "/brand2.png",
+        //     name: "Cemex",
+        // },
+        // {
+        //     id: 3,
+        //     image_path: "/brand3.png",
+        //     name: "Heidelberg Materials",
+        // },
+        // {
+        //     id: 4,
+        //     image_path: "/brand1.png",
+        //     name: "LafargeHolcim",
+        // },
+        // {
+        //     id: 5,
+        //     image_path: "/brand2.png",
+        //     name: "Anhui Conch Cement",
+        // },
+        // {
+        //     id: 6,
+        //     image_path: "/brand3.png",
+        //     name: "Vulcan Materials Company",
+        // },
     ]);
 
     return (

@@ -53,6 +53,7 @@
 .item-details {
     flex: 1;
     margin-left: 20px;
+    margin-top: 15px;
 }
 
 .item-details h3 {
@@ -94,4 +95,58 @@
 .item-delivery {
     color: #7b7b7b;
     font-size: 15px;
+}
+
+
+@media (max-width: 1000px) {
+    .reviews-grid {
+        grid-template-columns: repeat(auto-fit, minmax(48%, 1fr));
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .item-image {
+        width: 80%;
+        max-width: 200px;
+        height: auto;
+    }
+
+    .item-actions {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .address-container {
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .item-image {
+        width: 100%;
+        max-width: 180px;
+        height: auto;
+    }
+
+    .item-details {
+        text-align: center;
+    }
+
+    .item-actions {
+        flex-direction: column;
+        align-items: center;
+    }
 }

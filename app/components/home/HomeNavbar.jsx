@@ -27,9 +27,9 @@ export default function HomeNavbar() {
         navigate("/login");
     }
 
-    // const handleRedirectToProfile = () => {
-    //     navigate("/view-profile");
-    // }
+    const handleRedirectToProfile = () => {
+        navigate("/my-account");
+    }
 
     const handleRedirectToCart = () => {
         navigate("/cart");
@@ -62,7 +62,7 @@ export default function HomeNavbar() {
                 </div>
                 <div className="user-actions">
                     {authToken ?
-                        <span className="action-item"><i className="fas fa-user" /> Profile</span>
+                        <span onClick={handleRedirectToProfile} className="action-item"><i className="fas fa-user" /> My Account</span>
                         : <span onClick={handleRedirectToLogin} className="action-item"><i className="fas fa-user" /> Login</span>
                     }
 
