@@ -8,6 +8,8 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { Outlet, useNavigate } from "@remix-run/react";
 import { getOrderData } from "../../utils/api.js"
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 // export const meta: MetaFunction = () => {
 //   return [
 //     { title: "New Remix App" },
@@ -19,6 +21,7 @@ export default function Orders() {
   const navigate = useNavigate();
 
   const [authToken, setAuthToken] = useState(false);
+  const [showSkeleton, setShowSkeleton] = useState(false);
   const [orderItems, setOrderItems] = useState([
     // {
     //   order_id: 1,
@@ -63,6 +66,7 @@ export default function Orders() {
   }, []);
 
   const fetchOrderData = async () => {
+    setShowSkeleton(true);
     const isVerified = localStorage.getItem("authToken");
 
     if (isVerified && isVerified !== "") {
@@ -73,11 +77,15 @@ export default function Orders() {
 
         if (res) {
           console.log(res);
-          
+
           setOrderItems(res.order_data);
+          setShowSkeleton(false);
+        } else {
+          setShowSkeleton(false);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
+        setShowSkeleton(false);
       }
     } else {
       navigate("/");
@@ -98,31 +106,41 @@ export default function Orders() {
         <div className="address-head">
           <h2>My Orders</h2>
         </div>
-        <div className="reviews-grid">
-          {orderItems.map((item, index) => (
-            <div key={item.order_id} className="cart-item" onClick={() => handleViewOrder(item)}>
-              <img src={item.image_paths[0]} alt={item.name} className="item-image" />
-              <div className="item-details">
-                <h3>{item.name}</h3>
-                {/* <p className="item-size">{item.size}</p> */}
-                {/* <div className="item-rating">
+        {orderItems.length > 0 ? (
+          <div className="reviews-grid">
+            {orderItems.map((item, index) => (
+              <div key={item.order_id} className="cart-item" onClick={() => handleViewOrder(item)}>
+                <img src={item.image_paths[0]} alt={item.name} className="item-image" />
+                <div className="item-details">
+                  <h3>{item.name}</h3>
+                  {/* <p className="item-size">{item.size}</p> */}
+                  {/* <div className="item-rating">
                   {"★".repeat(item.star_value)}
                   <span className="reviews">({item.star_value} Reviews)</span>
                 </div> */}
-                {/* <p className="item-price">₹{Number(item?.price).toFixed(2)}</p> */}
+                  {/* <p className="item-price">₹{Number(item?.price).toFixed(2)}</p> */}
 
-                <span className="item-delivery">
-                  Ordered on {item.ordered_at}
-                  {/* {item.order_item_title} */}
-                </span>
-              </div>
+                  <span className="item-delivery">
+                    Ordered on {item.ordered_at}
+                    {/* {item.order_item_title} */}
+                  </span>
+                </div>
 
-              <div className="item-actions">
-                {/* <span>Qty: {item.quantity}</span> */}
+                <div className="item-actions">
+                  {/* <span>Qty: {item.quantity}</span> */}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : showSkeleton ? (
+          <Skeleton count={10} />
+        ) : (
+          <div className="empty-address">
+            <h4>
+              No orders found.
+            </h4>
+          </div>
+        )}
       </div>
 
       <div className="products-footer">

@@ -224,8 +224,18 @@ function Cart({ swal }) {
                 
                 const res = await createNewOrder(orderData);
                 console.log(res);
+                if (res && res?.data?.order_status) {
+                    setOrderPlaced(true);
+                } else {
+                    swal.fire({
+                        title: "Error!",
+                        text: "Something went wrong. Please try again.",
+                        icon: "error"
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                }
                 
-                setOrderPlaced(true);
             } else {
                 setBuyButtonContent("PROCEED");
             }

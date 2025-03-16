@@ -85,6 +85,15 @@ export async function getCategoryCarousel() {
     }
 }
 
+export async function getSubCategory(id) {
+    const response = await apiRequest(`/api/app/display/sub_categories?category_id=${id}`, "GET", null, {}, false);
+    if (response?.status?.code === 200) {
+        return response.data;
+    } else {
+        return false;
+    }
+}
+
 export async function getBrandData() {
     const response = await apiRequest("/api/app/display/brands", "GET", null, {}, false);
     if (response?.status?.code === 200) {
@@ -193,6 +202,60 @@ export const getOrderDetailData = async (orderId, itemId) => {
     const response = await apiRequest(`/api/app/user/account/orders/order/${orderId}/${itemId}`, "GET", null, {}, true);
     if (response?.status?.code === 200) {
         return response.data;
+    } else {
+        return false;
+    }
+}
+
+export const getProductList = async (id) => {
+    const response = await apiRequest(`/api/products/category/${id}`, "GET", null, {}, false);
+    if (response?.status?.code === 200) {
+        return response.data;
+    } else {
+        return false;
+    }
+}
+
+export const getProductDetails = async (id) => {
+    const response = await apiRequest(`/api/products/get/${id}`, "GET", null, {}, false);
+    if (response?.status?.code === 200) {
+        return response.data;
+    } else {
+        return false;
+    }
+}
+
+export const getProfileData = async () => {
+    const response = await apiRequest("/api/user/profile", "GET", null, {}, true);
+    if (response?.status?.code === 200) {
+        return response.data;
+    } else {
+        return false;
+    }
+}
+
+export const saveProfileData = async (data) => {
+    const response = await apiRequest("/api/user/profile", "POST", data, {}, true);
+    if (response?.status?.code === 200) {
+        return response;
+    } else {
+        return false;
+    }
+}
+
+export const getAddressFromPin = async (data) => {
+    const response = await apiRequest(`/api/app/user/account/validate_pincode/${data}`, "GET", null, {}, true);
+    if (response?.status?.code === 200) {
+        return response;
+    } else {
+        return false;
+    }
+}
+
+export const addProductToCart = async (data) => {
+    const response = await apiRequest("/api/app/user/account/add_to_cart", "POST", data, {}, true);
+    if (response?.status?.code === 200) {
+        return response;
     } else {
         return false;
     }

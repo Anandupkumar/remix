@@ -10,6 +10,8 @@ import {
 } from "@remix-run/react";
 import { getAddressData, deleteAddressData, setDefaultAddress } from "../../utils/api";
 import { withSwal } from 'react-sweetalert2';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 // export const meta: MetaFunction = () => {
 //   return [
 //     { title: "New Remix App" },
@@ -25,6 +27,7 @@ function OrderAddress({ swal }) {
     const [authToken, setAuthToken] = useState(false);
     const [addressData, setAddressData] = useState([]);
     const [defaultAddressId, setDefaultAddressId] = useState(null);
+    const [showSkeleton, setShowSkeleton] = useState(false);
     const addresses = [
         {
             type: "Home",
@@ -39,6 +42,7 @@ function OrderAddress({ swal }) {
 
     useEffect(() => {
         const fetchAddressData = async () => {
+            setShowSkeleton(true);
             localStorage.removeItem("editAddress");
             const isVerified = localStorage.getItem("authToken");
 
@@ -50,6 +54,7 @@ function OrderAddress({ swal }) {
                     console.log(res);
 
                     if (res) {
+                        setShowSkeleton(false);
                         setAddressData(res);
 
                         const defaultAddr = res.find(addr => addr.default === "1");
@@ -70,9 +75,12 @@ function OrderAddress({ swal }) {
                         // }));
 
                         // setAddressData(formattedData);
+                    } else {
+                        setShowSkeleton(false);
                     }
                 } catch (error) {
                     console.error("Error fetching data:", error);
+                    setShowSkeleton(false);
                 }
             } else {
                 navigate("/");
@@ -175,7 +183,7 @@ function OrderAddress({ swal }) {
                 }
             }
         });
-        
+
     };
 
     return (
@@ -231,17 +239,19 @@ function OrderAddress({ swal }) {
                                     </p>
                                 </div>
                                 <label className="toggle-switch">
-                            <input
-                                type="checkbox"
-                                checked={(address?.default !== "0") && (defaultAddressId === address?.id)}
-                                onChange={() => handleDefaultChange(address?.id)}
-                            />
-                            <span className="slider"></span>
-                            <span className="label-text">Default Address</span>
-                        </label>
+                                    <input
+                                        type="checkbox"
+                                        checked={(address?.default !== "0") && (defaultAddressId === address?.id)}
+                                        onChange={() => handleDefaultChange(address?.id)}
+                                    />
+                                    <span className="slider"></span>
+                                    <span className="label-text">Default Address</span>
+                                </label>
                             </div>
                         </div>
-                    )) : (
+                    )) : showSkeleton ? (
+                        <Skeleton count={10} />
+                    ) : (
                         <div className="empty-address">
                             <h4>
                                 No addresses found.

@@ -10,7 +10,7 @@ import React from "react";
 import {
     Outlet, useNavigate
 } from "@remix-run/react";
-import { addAddressData, editAddressData } from "../../utils/api";
+import { addAddressData, editAddressData, getAddressFromPin } from "../../utils/api";
 import { withSwal } from 'react-sweetalert2';
 // export const meta: MetaFunction = () => {
 //   return [
@@ -74,7 +74,10 @@ function AddAddress({ swal }) {
         };
 
         fetchData();
-    }, [navigate]);
+        if (formData.pin_code.length === 6) {
+            fetchLocationByPincode();
+        }
+    }, [navigate, formData.pin_code]);
 
     const handleChange = (e) => {
         setFormData({
@@ -88,6 +91,41 @@ function AddAddress({ swal }) {
             ...formData,
             type: type,
         });
+    };
+
+    const fetchLocationByPincode = async () => {
+        try {
+            const data = await getAddressFromPin(formData.pin_code);
+            console.log(data);
+
+            if (data) {
+                if (data.data.pincode_data.length !== 0) {
+                    const location = data.data.pincode_data[0];
+                    setFormData(prev => ({
+                        ...prev,
+                        city: location.city,
+                        state: location.state,
+                        pin_code: location.pincode
+                    }));
+                } else {
+                    swal.fire({
+                        title: "Warning!",
+                        text: data.status.message,
+                        icon: "warning"
+                    }).then(() => {
+                        setFormData(prev => ({
+                            ...prev,
+                            pin_code: ""
+                        }));
+                    });
+
+                }
+            } else {
+                console.log("Invalid Pincode");
+            }
+        } catch (err) {
+            console.error("Error fetching location:", err);
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -136,13 +174,21 @@ function AddAddress({ swal }) {
                             placeholder="Name"
                             value={formData?.full_name}
                             onChange={handleChange}
+                            required
+                            minLength="2"
+                            maxLength="50"
+                            title="Enter a valid name"
                         />
                         <input
-                            type="text"
+                            type="tel"
                             name="mobile_number"
                             placeholder="Phone No"
                             value={formData?.mobile_number}
                             onChange={handleChange}
+                            required
+                            pattern="[0-9]{10}"
+                            maxLength="10"
+                            title="Enter a 10-digit phone number"
                         />
                     </div>
                     <div className="form-row">
@@ -152,6 +198,10 @@ function AddAddress({ swal }) {
                             placeholder="Pin code"
                             value={formData?.pin_code}
                             onChange={handleChange}
+                            pattern="[0-9]{6}"
+                            maxLength="6"
+                            title="Enter a valid 6-digit pin code"
+                            required
                         />
                         <input
                             type="text"
@@ -159,6 +209,7 @@ function AddAddress({ swal }) {
                             placeholder="State"
                             value={formData?.state}
                             onChange={handleChange}
+                            required
                         />
                     </div>
                     <div className="form-row">
@@ -168,6 +219,7 @@ function AddAddress({ swal }) {
                             placeholder="City"
                             value={formData?.city}
                             onChange={handleChange}
+                            required
                         // style={{ marginRight: "53%" }}
                         />
                         <input
@@ -176,6 +228,7 @@ function AddAddress({ swal }) {
                             placeholder="House Name"
                             value={formData?.house_name}
                             onChange={handleChange}
+                            required
                         // style={{ marginRight: "53%" }}
                         />
                     </div>

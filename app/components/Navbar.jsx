@@ -22,6 +22,10 @@ export default function Navbar() {
         navigate("/");
     }
 
+    const handleRedirectToCategory = () => {
+        navigate("/categories")
+    }
+
     return (
         <div>
             <div className="top-header">
@@ -43,7 +47,7 @@ export default function Navbar() {
                 </div>
                 <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
                     <li onClick={handleRedirectToHome}>HOME</li>
-                    <li>
+                    <li onClick={handleRedirectToCategory}>
                         CATEGORY <i className="fas fa-chevron-down" />
                     </li>
                     <li>SHOP BY BRANDS</li>

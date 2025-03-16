@@ -98,6 +98,13 @@
 }
 
 
+.empty-address {
+    display: flex;
+    justify-content: center;
+}
+
+
+
 @media (max-width: 1000px) {
     .reviews-grid {
         grid-template-columns: repeat(auto-fit, minmax(48%, 1fr));
