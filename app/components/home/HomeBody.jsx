@@ -3,9 +3,13 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 import { useState, useEffect, useRef } from "react";
 import { getTopSliderData, getCategoryCarousel } from "../../utils/api";
+import {
+    Outlet, useNavigate
+} from "@remix-run/react";
 
 export default function HomeBody() {
 
+    const navigate = useNavigate();
     const scrollContainerRef = useRef(0);
 
     const scroll = (direction) => {
@@ -57,6 +61,10 @@ export default function HomeBody() {
         { name: "Safety & PPE", image_path: "/product-cat1.jpg" },
         { name: "Construction Materials", image_path: "/product-cat2.jpg" },
     ];
+
+    const handleRedirectToSubCategories = (category) => {
+        navigate(`/sub-categories?id=${category.id}&name=${category.name}`);
+    }
 
     return (
         <div className="body-container">
@@ -143,7 +151,7 @@ export default function HomeBody() {
                 <div className="categories-container" ref={scrollContainerRef}>
                     {/* {categories.map((category, index) => ( */}
                     {categoryCarousel.map((category, index) => (
-                        <div className="category-card" key={index}>
+                        <div className="category-card" key={index} onClick={() => handleRedirectToSubCategories(category)}>
                             <img src={category.image_path} alt={category.name} className="category-image" />
                             <div className="category-title">{category.name}</div>
                         </div>

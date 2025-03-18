@@ -10,9 +10,10 @@ import { useLocation } from "react-router-dom";
 import {
     Outlet, useNavigate
 } from "@remix-run/react";
-import { getProductList } from "../../utils/api";
+import { getProductList, addProductToCart } from "../../utils/api";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import { withSwal } from 'react-sweetalert2';
 // export const meta: MetaFunction = () => {
 //   return [
 //     { title: "New Remix App" },
@@ -21,7 +22,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 // };
 
 
-export default function ProductList() {
+function ProductList({ swal }) {
 
     const navigate = useNavigate();
 
@@ -131,9 +132,33 @@ export default function ProductList() {
 
     }, []);
 
-    const handleRedirectToCart = (event) => {
+    const handleRedirectToCart = async (event, productDetails) => {
         event.stopPropagation();
-        navigate("/cart");
+        // navigate("/cart");
+        const isVerified = localStorage.getItem("authToken");
+        if (isVerified && isVerified !== "") {
+
+            console.log(productDetails);
+            const data = {
+                product_id: productDetails.product_id
+            };
+            const res = await addProductToCart(data);
+            if (res) {
+                swal.fire({
+                    title: "Success!",
+                    text: "Item added to cart",
+                    icon: "success"
+                }).then(() => {
+                    navigate("/cart");
+                });
+            }
+        } else {
+            swal.fire({
+                title: "Warning!",
+                text: "please Login to continue.",
+                icon: "warning"
+            });
+        }
     }
 
     const handleRedirectToView = (product) => {
@@ -179,7 +204,7 @@ export default function ProductList() {
 
                                         <p className="product-price">{product.price}</p>
                                     </div>
-                                    <button className="add-to-cart-btn" onClick={handleRedirectToCart} >
+                                    <button className="add-to-cart-btn" onClick={(e) => handleRedirectToCart(e, product)} >
                                         <span className="cart-icon">
                                             <i className="fa-solid fa-cart-shopping" />
 
@@ -206,3 +231,5 @@ export default function ProductList() {
         </div>
     );
 }
+
+export default withSwal(({ swal }) => <ProductList swal={swal} />);

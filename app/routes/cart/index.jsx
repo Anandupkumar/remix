@@ -213,10 +213,12 @@ function Cart({ swal }) {
                 setShowPaymentMethod(true);
                 setBuyButtonContent("MAKE PAYMENT");
             } else if (showAddress && showSelectAddress && buyButtonContent === 'MAKE PAYMENT') {
+                // console.log(cartItems);
+                
                 const orderData = {
-                    address_id: defaultAddress.id,
+                    address_id: Number(defaultAddress.id),
                     flow_path: "cart",
-                    product_id: cartItems.length === 1 ? `${cartItems.product_id}` : "",
+                    product_id: cartItems.length === 1 ? `${cartItems[0].product_id}` : "",
                     coupon_state_token: "",
                     payment_method: `${selectedMethod}`,
                     referred_by: ""
