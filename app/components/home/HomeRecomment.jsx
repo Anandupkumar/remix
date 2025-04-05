@@ -1,82 +1,128 @@
 import "../../styles/components/home/HomeRecomment.scss";
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { useState, useEffect } from "react";
+import { Outlet, useNavigate } from "@remix-run/react";
+import { getCartData, getProductsForHome } from "../../utils/api";
 
 export default function HomeRecomment() {
+
+    const navigate = useNavigate();
+
+    const [productData, setProductData] = useState([]);
 
     const products = [
         {
             id: 1,
-            image: "/cement.jpg",
-            title: "Raasi Gold PPC Cement",
-            description: "50 KG Bag",
-            price: "Rs.460.00 per bag",
+            image_paths: ["/cement.jpg"],
+            name: "Raasi Gold PPC Cement",
+            first_title: "50 KG Bag",
+            price: "460.00",
             delivery: "Free Delivery",
             rating: 4.6,
         },
         {
             id: 2,
-            image: "/angle-valve.jpg",
-            title: "Angle Valve",
-            description: "Brass",
-            price: "Rs.298.00 set of 2",
+            image_paths: ["/angle-valve.jpg"],
+            name: "Angle Valve",
+            first_title: "Brass",
+            price: "298.00",
             delivery: "Delivery Charge: ₹25",
             rating: 4.6,
         },
         {
             id: 3,
-            image: "/cement.jpg",
-            title: "Binding Wire",
-            description: "0.71 mm",
-            price: "Rs.599.00 91 meter",
+            image_paths: ["/cement.jpg"],
+            name: "Binding Wire",
+            first_title: "0.71 mm",
+            price: "599.00",
             delivery: "Free Delivery",
             rating: 4.6,
         },
         {
             id: 4,
-            image: "/angle-valve.jpg",
-            title: "Finolex Pipes 1”",
-            description: "PVC Long Bends",
-            price: "Rs.06.30 per piece",
+            image_paths: ["/angle-valve.jpg"],
+            name: "Finolex Pipes 1”",
+            first_title: "PVC Long Bends",
+            price: "06.30",
             delivery: "Free Delivery",
             rating: 4.6,
         },
     ];
 
+    useEffect(() => {
+        const fetchData = async () => {
+            // setShowSkeleton(true);
+            try {
+                let brandId = "1";
+                const productsData = await getProductsForHome(brandId);
+                if (productsData) {
+                    setProductData(productsData.data.slice(0, 8));
+                    console.log("Product Data:", productsData.data);
+
+                    // setShowSkeleton(false);
+                } else {
+                    // setShowSkeleton(false);
+                }
+
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                // setShowSkeleton(false);
+            }
+        };
+
+        fetchData();
+
+    }, []);
+
+    const handleRedirectToAllProducts = () => {
+        navigate("/product-list");
+    }
+
     return (
         <div className="most-sold-product-container">
-            <h1 className="products-heading">RECOMMENTED FOR YOU
+            <h1 className="products-heading">BESTSELLERS
+                {/* RECOMMENTED FOR YOU */}
                 {/* <i className="fas fa-circle-chevron-right"></i> */}
             </h1>
+            <p className="best-desc">
+                Discover our most-loved fragrances, chosen by perfume enthusiasts. These iconic scents are timeless favorites
+            </p>
             <div className="products-grid">
-                {products.map((product) => (
-                    <div key={product.id} className="product-card">
+                {/* {products.map((product) => ( */}
+                {productData.map((product) => (
+                    <div key={product.product_id} className="product-card" onClick={() => navigate(`/view-products?id=${product.product_id}`)}>
                         <span className="best-seller-label">Best Seller</span>
                         <img
-                            src={product.image}
-                            alt={product.title}
+                            src={product.image_paths[0]}
+                            alt={product.name}
                             className="product-image"
                         />
                         <div className="product-info">
-                            <div className="product-rating">
+                            {/* <div className="product-rating">
                                 <span>⭐</span> {product.rating}
-                            </div>
-                            <h3 className="product-title">{product.title}</h3>
-                            <p className="product-description">{product.description}</p>
+                            </div> */}
+                            <h3 className="product-title">{product.name}</h3>
+                            <p className="product-description">{product.first_title}</p>
 
-                            <p
+                            {/* <p
                                 className={`product-delivery ${product.delivery.includes("Free") ? "free-delivery" : ""
                                     }`}
                             >
                                 <i className="fas fa-truck" style={{ marginRight: '10px' }} />
                                 {product.delivery}
-                            </p>
-                            <p className="product-price">{product.price}</p>
+                            </p> */}
+                            <p className="product-price">Rs.{product.price}</p>
                         </div>
                         <button className="add-to-cart-btn">
-                            <span className="cart-icon">🛒</span>
+                            <i className="fas fa-cart-shopping" />
                         </button>
                     </div>
                 ))}
+            </div>
+            <div className="view-all-cont">
+                <button className="view-all-btn" onClick={handleRedirectToAllProducts}>
+                    View All
+                </button>
             </div>
         </div>
     )

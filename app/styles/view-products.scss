@@ -21,7 +21,7 @@
 
 .main-image {
     width: 80%;
-    height: 100%;
+    height: max-content;
     object-fit: contain;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -56,6 +56,7 @@
     font-size: 35px;
     font-weight: bold;
     margin-bottom: 10px;
+    margin-top: 20px;
 }
 
 .product-dimensions {
@@ -68,6 +69,15 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+}
+
+.offer-price-lbl {
+    margin-bottom: 20px;
+
+    p {
+        font-weight: 600;
+        color: #03b703;
+    }
 }
 
 .rating {
@@ -89,13 +99,21 @@
 .price-quantity-container {
     display: flex;
     flex-direction: row;
-    gap: 78%;
+    gap: 3%;
 }
 
 .price {
-    font-size: 35px;
+    font-size: 25px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.org-price {
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #6b6b6b;
+    text-decoration: line-through;
 }
 
 .description {
@@ -120,36 +138,42 @@
 .quantity-selector {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 25px;
+    margin-bottom: 30px;
+    margin-top: 10px;
 }
 
 .quantity-btn {
-    padding: 5px 10px;
+    padding: 6px 20px;
     background-color: #f0f0f0;
+    color: white;
     border: 1px solid #ddd;
-    border-radius: 3px;
-    font-size: 16px;
+    border-radius: 50%;
+    font-size: 24px;
     cursor: pointer;
 }
 
 .quantity-value {
-    font-size: 18px;
+    font-size: 21px;
     font-weight: bold;
+    padding: 8px 25px;
+    border: 1px solid black;
+    border-radius: 34%;
 }
 
 .add-to-cart-btn {
-    padding: 10px 20px;
+    padding: 10px 105px;
     background-color: #E21F25;
     color: #fff;
     font-size: 16px;
     font-weight: bold;
     border: none;
-    border-radius: 25px;
+    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
     position: relative;
-    left: 81%;
+    margin-bottom: 10px;
+    // left: 81%;
 }
 
 .add-to-cart-btn:hover {
@@ -249,6 +273,22 @@
     background-color: #00468b;
 }
 
+.best-seller-label {
+    position: relative;
+    /* border: 1px solid #999999; */
+    width: 35%;
+    /* padding: 2px; */
+    height: 6%;
+    z-index: 5;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #565656;
+    font-size: 18px;
+    text-align: center;
+    padding-top: 2px;
+    text-transform: uppercase !important;
+}
+
 
 
 
@@ -259,11 +299,11 @@
     }
 
     .price-quantity-container {
-        gap: 50%;
+        gap: 3%;
     }
 
     .add-to-cart-btn {
-        left: 70%;
+        // left: 70%;
     }
 }
 
@@ -284,11 +324,11 @@
     }
 
     .price-quantity-container {
-        gap: 30%;
+        gap: 3%;
     }
 
     .add-to-cart-btn {
-        left: 60%;
+        // left: 60%;
     }
 
     .reviews-grid {
@@ -332,7 +372,8 @@
     }
 
     .product-dimensions,
-    .price {
+    .price,
+    .org-price {
         font-size: 18px;
     }
 
@@ -342,7 +383,7 @@
     }
 
     .price-quantity-container {
-        flex-direction: column;
+        // flex-direction: column;
         gap: 15px;
         align-items: center;
     }

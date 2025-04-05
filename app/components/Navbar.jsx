@@ -7,6 +7,17 @@ export default function Navbar() {
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navigate = useNavigate();
+    const [authToken, setAuthToken] = useState(false);
+
+    useEffect(() => {
+        const isVerified = localStorage.getItem("authToken");
+        if (isVerified && isVerified !== "") {
+            setAuthToken(true);
+        } else {
+            setAuthToken(false);
+        }
+
+    }, []);
 
     // const handleRedirectToLogin = () => {
     //     navigate("/login");
@@ -20,6 +31,18 @@ export default function Navbar() {
 
     const handleRedirectToHome = () => {
         navigate("/");
+    }
+
+    const handleRedirectToLogin = () => {
+        navigate("/login");
+    }
+
+    const handleRedirectToProfile = () => {
+        navigate("/my-account");
+    }
+
+    const handleRedirectToCart = () => {
+        navigate("/cart");
     }
 
     const handleRedirectToCategory = () => {
@@ -38,6 +61,14 @@ export default function Navbar() {
                     />
                     {/* <span className="sub-title">LULU RAYYAN GROUP W.L.L</span> */}
                 </div>
+                <div className="user-actions">
+                    {authToken ?
+                        <span onClick={handleRedirectToProfile} className="action-item"><i className="fas fa-user" /> My Account</span>
+                        : <span onClick={handleRedirectToLogin} className="action-item"><i className="fas fa-user" /> Login</span>
+                    }
+
+                    <span onClick={handleRedirectToCart} className="action-item"><i className="fas fa-cart-shopping" /> Cart</span>
+                </div>
             </div>
             <nav className="bottom-header">
                 <div className="menu-icon" onClick={toggleMenu}>
@@ -48,13 +79,15 @@ export default function Navbar() {
                 <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
                     <li onClick={handleRedirectToHome}>HOME</li>
                     <li onClick={handleRedirectToCategory}>
-                        CATEGORY <i className="fas fa-chevron-down" />
+                        CATEGORY 
+                        {/* <i className="fas fa-chevron-down" /> */}
                     </li>
                     <li>SHOP BY BRANDS</li>
                     <li>BUYING GUIDE</li>
                     <li>BEST SELLING</li>
                     <li>
-                        COMPANY <i className="fas fa-chevron-down" />
+                        COMPANY 
+                        {/* <i className="fas fa-chevron-down" /> */}
                     </li>
                     <li>CONTACT US</li>
                 </ul>

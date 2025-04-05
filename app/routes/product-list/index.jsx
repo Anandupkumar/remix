@@ -114,8 +114,10 @@ function ProductList({ swal }) {
         const fetchData = async () => {
             setShowSkeleton(true);
             try {
-                const productsData = await getProductList(id);
-                if (productsData) {
+                let brandId = "1";
+                const productsData = await getProductList(brandId);
+
+                if (productsData && Array.isArray(productsData)) {
                     setProductList(productsData);
                     setShowSkeleton(false);
                 } else {
@@ -171,7 +173,7 @@ function ProductList({ swal }) {
                 <Navbar />
             </div>
             <div className="products-content-container">
-                <div>
+                {/* <div>
                     <Breadcrumbs
                         items={[
                             { label: 'Categories', path: '/categories' },
@@ -179,10 +181,10 @@ function ProductList({ swal }) {
                             { label: name, path: '' }
                         ]}
                     />
-                </div>
+                </div> */}
                 <div className="row product-heading">
                     <h1 className="product-head">
-                        PRODUCTS
+                        ALL PRODUCTS
                     </h1>
                 </div>
 
@@ -192,6 +194,7 @@ function ProductList({ swal }) {
                             {/* {products.map((product) => ( */}
                             {productList.map((product) => (
                                 <div key={product.product_id} className="product-card" onClick={() => handleRedirectToView(product)}>
+                                    <span className="best-seller-label">{product.condition}</span>
                                     <img
                                         src={product.image_paths[0]}
                                         alt={product.name}

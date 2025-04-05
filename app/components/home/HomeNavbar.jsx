@@ -70,7 +70,9 @@ export default function HomeNavbar() {
                         : <span onClick={handleRedirectToLogin} className="action-item"><i className="fas fa-user" /> Login</span>
                     }
 
-                    <span onClick={handleRedirectToCart} className="action-item"><i className="fas fa-cart-shopping" /> Cart</span>
+                    {authToken &&
+                        <span onClick={handleRedirectToCart} className="action-item"><i className="fas fa-cart-shopping" /> Cart</span>
+                    }
                 </div>
             </div>
 
@@ -83,13 +85,15 @@ export default function HomeNavbar() {
                 <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
                     <li>HOME</li>
                     <li onClick={handleRedirectToCategory}>
-                        CATEGORY <i className="fas fa-chevron-down" />
+                        CATEGORY 
+                        {/* <i className="fas fa-chevron-down" /> */}
                     </li>
                     <li>SHOP BY BRANDS</li>
                     <li>BUYING GUIDE</li>
                     <li>BEST SELLING</li>
                     <li>
-                        COMPANY <i className="fas fa-chevron-down" />
+                        COMPANY 
+                        {/* <i className="fas fa-chevron-down" /> */}
                     </li>
                     <li>CONTACT US</li>
                 </ul>

@@ -9,11 +9,14 @@
 .logo-container {
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 87%;
 }
 
 .logo {
     height: 15vh;
-    margin-right: 10px;
+    // margin-right: 10px;
+    margin-left: 200px;
 }
 
 .bottom-header {
@@ -23,6 +26,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.user-actions {
+    display: flex;
+    gap: 25px;
+
+    .action-item {
+        font-size: 17px;
+        color: #00274d;
+        cursor: pointer;
+        margin-top: 7px;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
 
 .nav-links {
@@ -106,8 +125,13 @@
         }
     }
 
+    .user-actions {
+        margin-top: 15px;
+    }
+
     .logo {
         height: 11vh;
+        margin-left: 0px;
     }
 
     .nav-links {

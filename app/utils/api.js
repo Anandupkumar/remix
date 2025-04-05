@@ -208,7 +208,7 @@ export const getOrderDetailData = async (orderId, itemId) => {
 }
 
 export const getProductList = async (id) => {
-    const response = await apiRequest(`/api/products/category/${id}`, "GET", null, {}, false);
+    const response = await apiRequest(`/api/products/brand/${id}`, "GET", null, {}, false);
     if (response?.status?.code === 200) {
         return response.data;
     } else {
@@ -254,6 +254,15 @@ export const getAddressFromPin = async (data) => {
 
 export const addProductToCart = async (data) => {
     const response = await apiRequest("/api/app/user/account/add_to_cart", "POST", data, {}, true);
+    if (response?.status?.code === 200) {
+        return response;
+    } else {
+        return false;
+    }
+}
+
+export const getProductsForHome = async (brandId) => {
+    const response = await apiRequest(`/api/products/brand/${brandId}`, "GET", null, {}, true);
     if (response?.status?.code === 200) {
         return response;
     } else {
