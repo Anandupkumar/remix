@@ -218,7 +218,8 @@ function Cart({ swal }) {
                 const orderData = {
                     address_id: Number(defaultAddress.id),
                     flow_path: "cart",
-                    product_id: cartItems.length === 1 ? `${cartItems[0].product_id}` : "",
+                    // product_id: cartItems.length === 1 ? `${cartItems[0].product_id}` : "",
+                    product_id: "",
                     coupon_state_token: "",
                     payment_method: `${selectedMethod}`,
                     referred_by: ""

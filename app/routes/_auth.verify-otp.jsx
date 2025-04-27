@@ -70,9 +70,9 @@ export default function VerifyOTP() {
             if (response) {
                 localStorage.setItem("authToken", response.token); // Store token
 
-                navigate("/");
-                // if (response.user_data.name === null) {
-                //     navigate("/profile"); 
+                // navigate("/");
+                // if (!response.user_data?.name || response.user_data.name === null) {
+                    navigate("/profile"); 
                 // } else {
                 //     navigate("/"); // Redirect to home page
                 // }

@@ -56,7 +56,7 @@ export default function HomeRecomment() {
                 let brandId = "1";
                 const productsData = await getProductsForHome(brandId);
                 if (productsData) {
-                    setProductData(productsData.data.slice(0, 8));
+                    setProductData(productsData.data.slice(0, 4));
                     console.log("Product Data:", productsData.data);
 
                     // setShowSkeleton(false);

@@ -33,7 +33,7 @@ export default function Index() {
         {/* <HomeBodyG /> */}
       </div>
 
-      {/* <div className="sales-container">
+      <div className="sales-container">
         <HomeSales />
       </div>
 
@@ -43,19 +43,19 @@ export default function Index() {
 
       <div className="ad-container">
         <HomeAds />
-      </div> */}
+      </div>
 
       <div className="recom-container">
         <HomeRecomment />
       </div >
 
-      {/* <div className="savings-container">
+      <div className="savings-container">
         <HomeSavings />
       </div >
 
       <div className="brand-container">
         <BrandStore />
-      </div> */}
+      </div>
 
       <div className="footer-container">
         <Footer />

@@ -109,26 +109,26 @@ export default function HomeBody() {
                 </div>
                 <div className="col-4 offer-container">
                     <div className="cont-1">
-                        <img src="/buying-1.png" alt="" className="blog-image" />
+                        <img src="/buying-right-1.png" alt="" className="blog-image" />
 
-                        <div className="promo-content">
+                        {/* <div className="promo-content">
                             <h3>
                                 BUYING <span className="highlight">GUIDE</span> <br />
                                 Construction Blogs
                             </h3>
-                        </div>
+                        </div> */}
 
                     </div>
                     <div className="cont-1">
-                        <img src="/img-right2.jpg" alt="" className="blog-image" />
+                        <img src="/image-right2.png" alt="" className="blog-image" />
 
-                        <div className="savings-content">
+                        {/* <div className="savings-content">
                             <h5>
                                 <span className="savings-highlight">BIG SAVINGS!!</span> <br />
                                 Grab Our Exclusive Deals
                             </h5>
                             <button className="savings-shop-now-btn">Shop Now</button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

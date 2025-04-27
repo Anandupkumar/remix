@@ -4,28 +4,28 @@ export default function HomeSavings() {
     const offers = [
         {
             id: 1,
-            image: "/product-cat1.jpg",
+            image: "/prod-cat1.png",
             label: "Deals Of The Day",
             discount: "Extra 20% off",
             category: "on Electricals",
         },
         {
             id: 2,
-            image: "/product-cat2.jpg",
+            image: "/prod-cat2.png",
             label: "Use Code: BUILD10",
             discount: "Extra 20% off",
             category: "on Hardware & Fixtures",
         },
         {
             id: 3,
-            image: "/product-cat1.jpg",
+            image: "/prod-cat3.png",
             label: "Use Code: BUILD10",
             discount: "Extra 20% off",
             category: "on Cement",
         },
         {
             id: 4,
-            image: "/product-cat2.jpg",
+            image: "/prod-cat4.png",
             label: "Deals Of The Day",
             discount: "Save up to 20% off",
             category: "on TMT Steels",

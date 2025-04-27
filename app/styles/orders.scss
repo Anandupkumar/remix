@@ -18,7 +18,7 @@
 
 .reviews-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
     gap: 40px;
     margin-bottom: 50px;
     margin-top: 45px;
@@ -107,7 +107,7 @@
 
 @media (max-width: 1000px) {
     .reviews-grid {
-        grid-template-columns: repeat(auto-fit, minmax(48%, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(48%, 1fr));
     }
 
     .cart-item {
