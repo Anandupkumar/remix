@@ -28,7 +28,7 @@
 /* Product grid layout */
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 50px;
     align-items: start;
 }
@@ -116,7 +116,7 @@
     }
 
     .products-grid {
-        grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
         gap: 30px;
     }
 
