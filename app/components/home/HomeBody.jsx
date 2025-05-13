@@ -30,7 +30,7 @@ export default function HomeBody() {
             try {
                 const [topSliders, categoryCarousel] = await Promise.all([
                     getTopSliderData(),
-                    getCategoryCarousel() 
+                    getCategoryCarousel()
                 ]);
 
                 // console.log("Top Sliders:", topSliders);
@@ -67,72 +67,73 @@ export default function HomeBody() {
     }
 
     return (
-        <div className="body-container">
-            <div className="row content-container">
-                <div className="col-8">
-                    <Carousel
-                        showThumbs={false}
-                        showIndicators={true}
-                        showStatus={false}
-                        infiniteLoop
-                        autoPlay
-                        interval={5000}
-                        // className="custom-carousel"
-                        className="carousel-container">
+        // <div className="body-container">
+            <div className="content_wrap">
+                <div className="row content-container">
+                    <div className="col-8">
+                        <Carousel
+                            showThumbs={false}
+                            showIndicators={true}
+                            showStatus={false}
+                            infiniteLoop
+                            autoPlay
+                            interval={5000}
+                            // className="custom-carousel"
+                            className="carousel-container">
 
-                        {sliderImages.map((slider, index) => (
-                            <div className="image-container" key={index}>
-                                <img src={slider.image_path} />
-                                {/* <p className="legend">Tools and accessories to the <br /><span className="desc-last-word"> construction </span></p>
+                            {sliderImages.map((slider, index) => (
+                                <div className="image-container" key={index}>
+                                    <img src={slider.image_path} />
+                                    {/* <p className="legend">Tools and accessories to the <br /><span className="desc-last-word"> construction </span></p>
                                 <button className="shop-now-btn">Shop Now</button> */}
-                            </div>
-                        ))}
+                                </div>
+                            ))}
 
-                        {/* <div className="image-container"> */}
+                            {/* <div className="image-container"> */}
                             {/* <img src="/carousel1.jpg" /> */}
                             {/* <img src="https://mspotmicros.appcloudconsole.com/micros/uploads/images/elastic/wF88yhgk4emp6xSEEImzncwl7jyDBBeyuTFH5Skx.png" /> */}
                             {/* <p className="legend">Tools and accessories to the <br /><span className="desc-last-word"> construction </span></p>
                             <button className="shop-now-btn">Shop Now</button> */}
-                        {/* </div>
+                            {/* </div>
                         <div className="image-container"> */}
                             {/* <img src="/carousel2.png" /> */}
                             {/* <img src="https://mspotmicros.appcloudconsole.com/micros/uploads/images/elastic/4lYwEfjZvLM1zHwAOBGzyitIHhWtUEpCXiFTkZnL.jpg" /> */}
                             {/* <p className="legend">Tools and accessories to the <br /><span className="desc-last-word"> construction </span></p>
                             <button className="shop-now-btn">Shop Now</button> */}
-                        {/* </div> */}
-                        
-                        {/* <div>
+                            {/* </div> */}
+
+                            {/* <div>
                             <img src="assets/3.jpeg" />
                             <p className="legend">Legend 3</p>
                         </div> */}
-                    </Carousel>
-                </div>
-                <div className="col-4 offer-container">
-                    <div className="cont-1">
-                        <img src="/buying-right-1.png" alt="" className="blog-image" />
+                        </Carousel>
+                    </div>
+                    <div className="col-4 offer-container">
+                        <div className="cont-1">
+                            <img src="/banner2.png" alt="" className="blog-image" />
 
-                        {/* <div className="promo-content">
+                            {/* <div className="promo-content">
                             <h3>
                                 BUYING <span className="highlight">GUIDE</span> <br />
                                 Construction Blogs
                             </h3>
                         </div> */}
 
-                    </div>
-                    <div className="cont-1">
-                        <img src="/image-right2.png" alt="" className="blog-image" />
+                        </div>
+                        <div className="cont-1">
+                            <img src="/banner3.png" alt="" className="blog-image" />
 
-                        {/* <div className="savings-content">
+                            {/* <div className="savings-content">
                             <h5>
                                 <span className="savings-highlight">BIG SAVINGS!!</span> <br />
                                 Grab Our Exclusive Deals
                             </h5>
                             <button className="savings-shop-now-btn">Shop Now</button>
                         </div> */}
+                        </div>
                     </div>
                 </div>
-            </div>
-            {/* <div className="row product-category-container">
+                {/* <div className="row product-category-container">
                 <div className="col product-category">
                     <img src="/product-cat1.jpg" alt="" className="product-category-img" />
                     <span className="product-category-label">Tapes & Adhesives</span>
@@ -143,22 +144,23 @@ export default function HomeBody() {
                 </div>
             </div> */}
 
-            <div className="categories-wrapper">
-                {showLeftArrow !== 0 && (
-                    <button className="scroll-button left" onClick={() => scroll("left")}>&#10094;</button>
-                )}
+                <div className="categories-wrapper">
+                    {showLeftArrow !== 0 && (
+                        <button className="scroll-button left" onClick={() => scroll("left")}>&#10094;</button>
+                    )}
 
-                <div className="categories-container" ref={scrollContainerRef}>
-                    {/* {categories.map((category, index) => ( */}
-                    {categoryCarousel.map((category, index) => (
-                        <div className="category-card" key={index} onClick={() => handleRedirectToSubCategories(category)}>
-                            <img src={category.image_path} alt={category.name} className="category-image" />
-                            <div className="category-title">{category.name}</div>
-                        </div>
-                    ))}
+                    <div className="categories-container" ref={scrollContainerRef}>
+                        {/* {categories.map((category, index) => ( */}
+                        {categoryCarousel.map((category, index) => (
+                            <div className="category-card" key={index} onClick={() => handleRedirectToSubCategories(category)}>
+                                <img src={category.image_path} alt={category.name} className="category-image" />
+                                <div className="category-title">{category.name}</div>
+                            </div>
+                        ))}
+                    </div>
+                    <button className="scroll-button right" onClick={() => scroll("right")}>&#10095;</button>
                 </div>
-                <button className="scroll-button right" onClick={() => scroll("right")}>&#10095;</button>
             </div>
-        </div>
+        // </div>
     )
 }

@@ -20,7 +20,7 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
-  
+
 
   return (
     <>
@@ -38,20 +38,24 @@ export default function Index() {
       </div>
 
       <div className="sold-product-container">
-        <MostSoldProducts />
+        <MostSoldProducts title={"OUR MOST SOLD PRODUCTS"} />
       </div>
 
       <div className="ad-container">
         <HomeAds />
       </div>
 
-      <div className="recom-container">
+      {/* <div className="recom-container">
         <HomeRecomment />
-      </div >
+      </div > */}
 
-      <div className="savings-container">
+      {/* <div className="savings-container">
         <HomeSavings />
-      </div >
+      </div > */}
+
+      <div className="sold-product-container">
+        <MostSoldProducts title={null} />
+      </div>
 
       <div className="brand-container">
         <BrandStore />

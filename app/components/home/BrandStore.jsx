@@ -55,17 +55,23 @@ export default function BrandStore() {
 
     return (
         <div className="brands-container">
-            <h1 className="brands-heading">EXPLORE OFFICIAL BRAND STORES</h1>
+            <h1 className="brands-heading">OUR BRANDS</h1>
             <div className="brands-grid">
                 {brands.slice(0, 3).map((brand) => (
                     <div key={brand.id} className="brand-card">
                         <div className="brand-logo">
                             <img src={brand.image_path} alt={brand.name} />
                         </div>
-                        <div className="brand-details">
+                        {/* <div className="brand-details">
                             <h2 className="brand-name">{brand.name.toUpperCase()}</h2>
                             <a href="#" className="brand-link">
                                 Visit Store &gt;
+                            </a>
+                        </div> */}
+                        <div className="brand-details">
+                            {/* <h2 className="brand-name">{brand.name.toUpperCase()}</h2> */}
+                            <a href="#" className="brand-link">
+                                {brand.name.toUpperCase()}
                             </a>
                         </div>
                     </div>
@@ -75,10 +81,16 @@ export default function BrandStore() {
                         <div className="brand-logo">
                             <img src={brand.image_path} alt={brand.name} />
                         </div>
-                        <div className="brand-details">
+                        {/* <div className="brand-details">
                             <h2 className="brand-name">{brand.name.toUpperCase()}</h2>
                             <a href="#" className="brand-link">
                                 Visit Store &gt;
+                            </a>
+                        </div> */}
+                        <div className="brand-details">
+                            {/* <h2 className="brand-name">{brand.name.toUpperCase()}</h2> */}
+                            <a href="#" className="brand-link">
+                                {brand.name.toUpperCase()}
                             </a>
                         </div>
                     </div>

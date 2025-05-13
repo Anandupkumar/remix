@@ -1,24 +1,24 @@
 /* Container and heading styles */
+.sold-product-container{
+    padding: 0 20px;
+}
 .most-sold-product-container {
-    padding-top: 1%;
-    padding-bottom: 1%;
-    padding-left: 4%;
-    padding-right: 4%;
     font-family: Arial, sans-serif;
 }
 
 .products-heading {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: left;
-    margin-bottom: 20px;
+    font-size: 35px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 25px;
 }
 
 /* Grid layout for products */
-.products-grid {
+.home-products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 50px;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(6,1fr);
+    gap: 15px;
     align-items: start;
 }
 
@@ -50,6 +50,35 @@
 /* Product info */
 .product-info {
     margin-bottom: 0px;
+    position: relative;
+    .add-to-cart-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translateY(-20%);
+        background-color: white;
+        color: #EC2329;
+        border: 1px solid #EC2329;
+        border-radius: 25%;
+        width: 60px;
+        height: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-size: 20px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s, transform 0.3s;
+    
+        &:hover {
+            background-color: #EC2329;
+            color: white;
+            transform: scale(1.1);
+        }
+        .cart-icon {
+            font-size: 18px;
+        }
+    }
 }
 
 .product-title {
@@ -100,32 +129,6 @@
 }
 
 /* Button styles */
-.add-to-cart-btn {
-    position: absolute;
-    bottom: 29%;
-    right: 16px;
-    background-color: white;
-    color: #EC2329;
-    border: 1px solid #EC2329;
-    border-radius: 25%;
-    width: 60px;
-    height: 45px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    font-size: 20px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, transform 0.3s;
-}
 
-.add-to-cart-btn:hover {
-    background-color: #EC2329;
-    color: white;
-    transform: scale(1.1);
-}
 
 /* Cart icon */
-.cart-icon {
-    font-size: 18px;
-}

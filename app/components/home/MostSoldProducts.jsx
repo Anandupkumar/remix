@@ -1,7 +1,7 @@
 import "../../styles/components/home/SoldProducts.scss";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-export default function MostSoldProducts() {
+export default function MostSoldProducts({title}) {
 
     const products = [
         {
@@ -40,14 +40,90 @@ export default function MostSoldProducts() {
             delivery: "Free Delivery",
             rating: 4.6,
         },
+        {
+            id: 5,
+            image: "/cement.jpg",
+            title: "Raasi Gold PPC Cement",
+            description: "50 KG Bag",
+            price: "Rs.460.00 per bag",
+            delivery: "Free Delivery",
+            rating: 4.6,
+        },
+        {
+            id: 6,
+            image: "/angle-valve.jpg",
+            title: "Angle Valve",
+            description: "Brass",
+            price: "Rs.298.00 set of 2",
+            delivery: "Delivery Charge: ₹25",
+            rating: 4.6,
+        },
+        {
+            id: 7,
+            image: "/cement.jpg",
+            title: "Raasi Gold PPC Cement",
+            description: "50 KG Bag",
+            price: "Rs.460.00 per bag",
+            delivery: "Free Delivery",
+            rating: 4.6,
+        },
+        {
+            id: 8,
+            image: "/angle-valve.jpg",
+            title: "Angle Valve",
+            description: "Brass",
+            price: "Rs.298.00 set of 2",
+            delivery: "Delivery Charge: ₹25",
+            rating: 4.6,
+        },
+        {
+            id: 5,
+            image: "/cement.jpg",
+            title: "Raasi Gold PPC Cement",
+            description: "50 KG Bag",
+            price: "Rs.460.00 per bag",
+            delivery: "Free Delivery",
+            rating: 4.6,
+        },
+        {
+            id: 6,
+            image: "/angle-valve.jpg",
+            title: "Angle Valve",
+            description: "Brass",
+            price: "Rs.298.00 set of 2",
+            delivery: "Delivery Charge: ₹25",
+            rating: 4.6,
+        },
+        {
+            id: 7,
+            image: "/cement.jpg",
+            title: "Raasi Gold PPC Cement",
+            description: "50 KG Bag",
+            price: "Rs.460.00 per bag",
+            delivery: "Free Delivery",
+            rating: 4.6,
+        },
+        {
+            id: 8,
+            image: "/angle-valve.jpg",
+            title: "Angle Valve",
+            description: "Brass",
+            price: "Rs.298.00 set of 2",
+            delivery: "Delivery Charge: ₹25",
+            rating: 4.6,
+        }
     ];
 
     return (
         <div className="most-sold-product-container">
-            <h1 className="products-heading">OUR MOST SOLD PRODUCTS
-                {/* <i className="fas fa-circle-chevron-right"></i> */}
-            </h1>
-            <div className="products-grid">
+            {
+                title ? (<h1 className="products-heading">{title}
+
+                </h1>) : null
+
+            }
+
+            <div className="home-products-grid">
                 {products.map((product) => (
                     <div key={product.id} className="product-card">
                         <img
@@ -70,10 +146,11 @@ export default function MostSoldProducts() {
                                 {product.delivery}
                             </p>
                             <p className="product-price">{product.price}</p>
+
+                            <button className="add-to-cart-btn">
+                                <span className="cart-icon">🛒</span>
+                            </button>
                         </div>
-                        <button className="add-to-cart-btn">
-                            <span className="cart-icon">🛒</span>
-                        </button>
                     </div>
                 ))}
             </div>

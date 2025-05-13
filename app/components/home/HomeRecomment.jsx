@@ -87,38 +87,43 @@ export default function HomeRecomment() {
             <p className="best-desc">
                 Discover our most-loved fragrances, chosen by perfume enthusiasts. These iconic scents are timeless favorites
             </p>
-            <div className="products-grid">
-                {/* {products.map((product) => ( */}
-                {productData.map((product) => (
-                    <div key={product.product_id} className="product-card" onClick={() => navigate(`/view-products?id=${product.product_id}`)}>
-                        <span className="best-seller-label">Best Seller</span>
-                        <img
-                            src={product.image_paths[0]}
-                            alt={product.name}
-                            className="product-image"
-                        />
-                        <div className="product-info">
-                            {/* <div className="product-rating">
+            {
+                productData.length ? (
+                    <div className="products-grid">
+                        {/* {products.map((product) => ( */}
+                        {productData.map((product) => (
+                            <div key={product.product_id} className="product-card" onClick={() => navigate(`/view-products?id=${product.product_id}`)}>
+                                <span className="best-seller-label">Best Seller</span>
+                                <img
+                                    src={product.image_paths[0]}
+                                    alt={product.name}
+                                    className="product-image"
+                                />
+                                <div className="product-info">
+                                    {/* <div className="product-rating">
                                 <span>⭐</span> {product.rating}
                             </div> */}
-                            <h3 className="product-title">{product.name}</h3>
-                            <p className="product-description">{product.first_title}</p>
+                                    <h3 className="product-title">{product.name}</h3>
+                                    <p className="product-description">{product.first_title}</p>
 
-                            {/* <p
+                                    {/* <p
                                 className={`product-delivery ${product.delivery.includes("Free") ? "free-delivery" : ""
                                     }`}
                             >
                                 <i className="fas fa-truck" style={{ marginRight: '10px' }} />
                                 {product.delivery}
                             </p> */}
-                            <p className="product-price">Rs.{product.price}</p>
-                        </div>
-                        <button className="add-to-cart-btn">
-                            <i className="fas fa-cart-shopping" />
-                        </button>
+                                    <p className="product-price">Rs.{product.price}</p>
+                                </div>
+                                <button className="add-to-cart-btn">
+                                    <i className="fas fa-cart-shopping" />
+                                </button>
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </div>
+                ) : null
+            }
+
             <div className="view-all-cont">
                 <button className="view-all-btn" onClick={handleRedirectToAllProducts}>
                     View All

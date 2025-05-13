@@ -44,7 +44,7 @@ export default function HomeSales() {
 
             {/* Offer Sales Section */}
             <section className="offer-sales">
-                <h2>Offer Sales</h2>
+                {/* <h2>Offer Sales</h2> */}
                 <div className="offer-banner">
                     <img src="/offer-sales.png" alt="Offer Sale" />
                 </div>

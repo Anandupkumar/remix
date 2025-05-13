@@ -16,11 +16,19 @@
 }
 
 .best-desc {
-    margin: 30px 30px;
+    // margin: 30px 30px;
     font-size: 22px;
-    padding: 5px 363px;
+    // padding: 5px 363px;
     text-align: center;
     color: #555555;
+    max-width: 550px;
+    margin: 30px auto;
+
+    @media (max-width: 600px) {
+        
+            
+        
+    }
 }
 
 /* Grid layout for products */
@@ -185,12 +193,3 @@
     transform: scale(1.1);
 }
 
-@media (max-width: 600px) {
-    .best-desc {
-        margin: 5px 5px;
-        font-size: 15px;
-        padding: 5px 20px;
-        text-align: center;
-        color: #EC2329;
-    }
-}

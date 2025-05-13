@@ -121,7 +121,8 @@
     flex-direction: row;
     border: 1px solid #ddd;
     border-radius: 15px;
-    background-color: #f9f9f9;
+    // background-color: #f9f9f9;
+    background-color: #161E4D;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     min-height: 150px;
@@ -133,7 +134,8 @@
 }
 
 .brand-logo {
-    background-color: #161E4D;
+    
+    background-color: #f9f9f9;
     padding: 10px;
     display: flex;
     justify-content: center;
@@ -164,8 +166,8 @@
 .brand-link {
     font-size: 18px;
     font-weight: bold;
-    color: #0E77D8;
-    text-decoration: underline;
+    color: #ffffff;
+    text-decoration: none;
 }
 
 .brand-link:hover {
