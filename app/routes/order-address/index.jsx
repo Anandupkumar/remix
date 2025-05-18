@@ -51,7 +51,7 @@ function OrderAddress({ swal }) {
 
                 try {
                     const res = await getAddressData();
-                    console.log(res);
+                    // console.log(res);
 
                     if (res) {
                         setShowSkeleton(false);
@@ -96,13 +96,13 @@ function OrderAddress({ swal }) {
     }
 
     const handleEditAddress = (address) => {
-        console.log(address);
+        // console.log(address);
         localStorage.setItem("editAddress", JSON.stringify(address));
         navigate(`/add-address?id=${address.id}`);
     }
 
     const handleDeleteAddress = (addressId) => {
-        console.log(addressId);
+        // console.log(addressId);
 
         const data = {
             id: addressId
@@ -121,7 +121,7 @@ function OrderAddress({ swal }) {
             if (result.isConfirmed) {
                 try {
                     const res = await deleteAddressData(data);
-                    console.log(res.message);
+                    // console.log(res.message);
 
                     swal.fire({
                         title: "Deleted!",
@@ -163,7 +163,7 @@ function OrderAddress({ swal }) {
                 try {
                     setDefaultAddressId(id);
                     const res = await setDefaultAddress(data);
-                    console.log(res.message);
+                    // console.log(res.message);
 
                     swal.fire({
                         title: "Success!",

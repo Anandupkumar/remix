@@ -22,7 +22,12 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
 
-  const [homeSectionList, setHomeSectionList] = useState([]);
+  type HomeSection = {
+    id: string | number;
+    title: string;
+  };
+
+  const [homeSectionList, setHomeSectionList] = useState<HomeSection[]>([]);
 
   const homeDataList = [
     {
@@ -48,11 +53,11 @@ export default function Index() {
       // setShowSkeleton(true);
       try {
         const sectionList = await getHomeSectionList();
-        if (sectionList) {
+        if (sectionList?.featured_items) {
           // setShowSkeleton(false);
-          // console.log(sectionList);
+          // console.log("sectionList", sectionList);
 
-          setHomeSectionList(sectionList);
+          setHomeSectionList(sectionList.featured_items);
         } else {
           // setShowSkeleton(false);
         }
@@ -85,7 +90,7 @@ export default function Index() {
         <MostSoldProducts title={"OUR MOST SOLD PRODUCTS"} />
       </div> */}
 
-      {homeDataList.map((section, index) => (
+      {homeSectionList.map((section, index) => (
         <React.Fragment key={section.id}>
           {index === 1 && (
             <div className="ad-container">

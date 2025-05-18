@@ -96,7 +96,7 @@ function AddAddress({ swal }) {
     const fetchLocationByPincode = async () => {
         try {
             const data = await getAddressFromPin(formData.pin_code);
-            console.log(data);
+            // console.log(data);
 
             if (data) {
                 if (data.data.pincode_data.length !== 0) {
@@ -130,10 +130,10 @@ function AddAddress({ swal }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Form Data:", formData);
+        // console.log("Form Data:", formData);
         if (formData.id) {
             const res = await editAddressData(formData);
-            console.log(res);
+            // console.log(res);
             swal.fire({
                 title: res.type === 'success' ? 'Success' : 'Error',
                 text: res.message,
@@ -144,7 +144,7 @@ function AddAddress({ swal }) {
             });
         } else {
             const res = await addAddressData(formData);
-            console.log(res.message);
+            // console.log(res.message);
             swal.fire({
                 title: res.type === 'success' ? 'Success' : 'Error',
                 text: res.message,

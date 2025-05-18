@@ -74,9 +74,9 @@ function MyAccount({ swal }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(profileData);
+        // console.log(profileData);
         const res = await saveProfileData(profileData);
-        console.log(res);
+        // console.log(res);
         swal.fire({
             title: res.status.type === 'success' ? 'Success' : 'Error',
             text: res.status.message,

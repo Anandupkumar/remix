@@ -8,7 +8,7 @@ export default function BrandStore() {
         const fetchData = async () => {
             try {
                 const brandsData = await getBrandData();
-                console.log("Brands:", brandsData);
+                // console.log("Brands:", brandsData);
 
                 if (brandsData) setBrands(brandsData);
 

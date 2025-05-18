@@ -76,7 +76,7 @@ export default function Orders() {
         const res = await getOrderData();
 
         if (res) {
-          console.log(res);
+          // console.log(res);
 
           setOrderItems(res.order_data);
           setShowSkeleton(false);

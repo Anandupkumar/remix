@@ -119,7 +119,7 @@ function Cart({ swal }) {
                 count: updatedQty
             };
             const res = await updateCartQty(data);
-            console.log(res);
+            // console.log(res);
             await fetchCartData();
             setQtyLoading(false);
 
@@ -132,7 +132,7 @@ function Cart({ swal }) {
                 count: updatedQty
             };
             const res = await updateCartQty(data);
-            console.log(res);
+            // console.log(res);
             await fetchCartData();
             setQtyLoading(false);
 
@@ -226,7 +226,7 @@ function Cart({ swal }) {
                 };
                 
                 const res = await createNewOrder(orderData);
-                console.log(res);
+                // console.log(res);
                 if (res && res?.data?.order_status) {
                     setOrderPlaced(true);
                 } else {

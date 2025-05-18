@@ -140,7 +140,7 @@ function ProductList({ swal }) {
         const isVerified = localStorage.getItem("authToken");
         if (isVerified && isVerified !== "") {
 
-            console.log(productDetails);
+            // console.log(productDetails);
             const data = {
                 product_id: productDetails.product_id
             };

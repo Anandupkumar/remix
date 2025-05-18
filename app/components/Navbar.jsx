@@ -25,7 +25,7 @@ export default function Navbar() {
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
-        console.log(isMenuOpen);
+        // console.log(isMenuOpen);
         
     };
 

@@ -28,7 +28,7 @@ export default function HomeSales() {
                 if (salesData) setMegaSalesData(salesData);
                 if (limitedData) setLimitedSalesData(limitedData);
 
-                console.log("limitedData : ", salesData);
+                // console.log("limitedData : ", salesData);
 
                 // } else {
                 //     console.log("no mega sales data");
