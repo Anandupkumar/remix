@@ -3,8 +3,8 @@ import "../styles/components/Footer.scss";
 export default function Footer() {
     return (
         <footer className="footer">
-            <div className="logo-container">
-                <img src="/footer-logo.png" alt="Lulu Rayyan Group" className="footer-logo" />
+            <div className="foot-logo-container">
+                <img src="/footer-logo.png" alt="Lulu Rayyan Group" className="foot-footer-logo" />
             </div>
             <div className="footer-container">
 

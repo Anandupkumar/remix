@@ -1,7 +1,9 @@
 import "../../styles/components/home/SoldProducts.scss";
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import React, { useState, useEffect } from "react";
+import { getHomeSectionProductList } from "../../utils/api";
 
-export default function MostSoldProducts({title}) {
+export default function MostSoldProducts({ secId, title }) {
 
     const products = [
         {
@@ -113,6 +115,28 @@ export default function MostSoldProducts({title}) {
             rating: 4.6,
         }
     ];
+
+    const [homeSectionProducts, setHomeSectionProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const homeProducts = await getHomeSectionProductList(secId);
+                if (homeProducts) {
+                    // setShowSkeleton(false);
+                    // console.log(homeProducts);
+
+                    setHomeSectionProducts(homeProducts);
+                } else {
+                    // setShowSkeleton(false);
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     return (
         <div className="most-sold-product-container">

@@ -41,7 +41,7 @@ export default function HomeNavbar() {
 
     return (
         <div>
-            <div className="top-header">
+            <div className="home-top-header">
                 {/* <div className="logo-container">
                     <img
                         src="/logo-login.png"
@@ -49,40 +49,40 @@ export default function HomeNavbar() {
                         className="logo"
                     />
                 </div> */}
-                <div className="search-container">
+                <div className="home-search-container">
                     <img
                         src="/logo-login.png"
                         alt="Lulu Rayyan Group"
-                        className="logo"
+                        className="home-logo"
                     />
                     <input
                         type="text"
                         placeholder="What are you looking for?"
-                        className="search-input"
+                        className="home-search-input"
                     />
-                    <button className="search-button">
+                    <button className="home-search-button">
                         <i className="fas fa-search" />
                     </button>
                 </div>
-                <div className="user-actions">
+                <div className="home-user-actions">
                     {authToken ?
-                        <span onClick={handleRedirectToProfile} className="action-item"><i className="fas fa-user" /> My Account</span>
-                        : <span onClick={handleRedirectToLogin} className="action-item"><i className="fas fa-user" /> Login</span>
+                        <span onClick={handleRedirectToProfile} className="home-action-item"><i className="fas fa-user" /> My Account</span>
+                        : <span onClick={handleRedirectToLogin} className="home-action-item"><i className="fas fa-user" /> Login</span>
                     }
 
                     {authToken &&
-                        <span onClick={handleRedirectToCart} className="action-item"><i className="fas fa-cart-shopping" /> Cart</span>
+                        <span onClick={handleRedirectToCart} className="home-action-item"><i className="fas fa-cart-shopping" /> Cart</span>
                     }
                 </div>
             </div>
 
-            <nav className="bottom-header">
-                <div className="menu-icon" onClick={toggleMenu}>
+            <nav className="home-bottom-header">
+                <div className="home-menu-icon" onClick={toggleMenu}>
                     {isMenuOpen ?
                         <i className="fa-solid fa-xmark" />
                         : <i className="fa-solid fa-bars" />}
                 </div>
-                <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
+                <ul className={`home-nav-links ${isMenuOpen ? 'active' : ''}`}>
                     <li>HOME</li>
                     <li onClick={handleRedirectToCategory}>
                         CATEGORY 

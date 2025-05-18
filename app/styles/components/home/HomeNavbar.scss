@@ -1,4 +1,4 @@
-.top-header {
+.home-top-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -6,17 +6,17 @@
     background-color: #ffffff;
     border-bottom: 1px solid #ccc;
 
-    .search-container {
+    .home-search-container {
         display: flex;
         align-items: center;
         width: 87%;
 
-        .logo {
+        .home-logo {
             height: 13vh;
             margin-right: 3%;
         }
 
-        .search-input {
+        .home-search-input {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -24,7 +24,7 @@
             outline: none;
         }
 
-        .search-button {
+        .home-search-button {
             background-color: #00274d;
             color: #ffffff;
             border: none;
@@ -38,11 +38,11 @@
         }
     }
 
-    .user-actions {
+    .home-user-actions {
         display: flex;
         gap: 25px;
 
-        .action-item {
+        .home-action-item {
             font-size: 17px;
             color: #00274d;
             cursor: pointer;
@@ -54,13 +54,13 @@
     }
 }
 
-.bottom-header {
+.home-bottom-header {
     background-color: #00274d;
     color: #ffffff;
     padding: 10px 0;
     position: relative;
 
-    .menu-icon {
+    .home-menu-icon {
         display: none;
         font-size: 25px;
         color: #ffffff;
@@ -70,7 +70,7 @@
         right: 20px;
     }
 
-    .nav-links {
+    .home-nav-links {
         display: flex;
         justify-content: center;
         gap: 30px;
@@ -98,38 +98,38 @@
 
 /* Tablets (Max Width: 1200px) */
 @media (max-width: 1200px) {
-    .top-header {
+    .home-top-header {
         flex-direction: column;
         align-items: center;
         padding: 10px;
 
-        .search-container {
+        .home-search-container {
             width: 90%;
 
-            .logo {
+            .home-logo {
                 height: 10vh;
             }
 
-            .search-input {
+            .home-search-input {
                 font-size: 14px;
             }
 
-            .search-button {
+            .home-search-button {
                 padding: 8px 15px;
             }
         }
 
-        .user-actions {
+        .home-user-actions {
             gap: 15px;
             margin-top: 1px;
 
-            .action-item {
+            .home-action-item {
                 font-size: 15px;
             }
         }
     }
 
-    .bottom-header .nav-links {
+    .home-bottom-header .home-nav-links {
         gap: 15px;
 
         li {
@@ -139,55 +139,55 @@
 }
 
 @media (max-width: 850px) {
-    .bottom-header {
+    .home-bottom-header {
         height: 7vh;
     }
 }
 
 /* Mobile Devices (Max Width: 600px) */
 @media (max-width: 600px) {
-    .top-header {
+    .home-top-header {
         flex-direction: column;
         align-items: center;
         padding: 10px;
 
-        .search-container {
+        .home-search-container {
             flex-direction: column;
             width: 100%;
 
-            .logo {
+            .home-logo {
                 height: 8vh;
             }
 
-            .search-input {
+            .home-search-input {
                 width: 85%;
                 margin-bottom: 5px;
             }
 
-            .search-button {
+            .home-search-button {
                 width: 85%;
             }
         }
 
-        .user-actions {
+        .home-user-actions {
             flex-direction: row;
             justify-content: center;
             gap: 10px;
 
-            .action-item {
+            .home-action-item {
                 font-size: 14px;
             }
         }
     }
 
-    .bottom-header {
+    .home-bottom-header {
         padding: 10px 20px;
         
-        .menu-icon {
+        .home-menu-icon {
             display: block;
         }
 
-        .nav-links {
+        .home-nav-links {
             flex-direction: column;
             align-items: center;
             gap: 10px;
@@ -201,12 +201,12 @@
             z-index: 9;
         }
 
-        .nav-links.active {
+        .home-nav-links.active {
             max-height: 450px;
             z-index: 9;
         }
 
-        .nav-links li {
+        .home-nav-links li {
             font-size: 16px;
             padding: 10px 0;
             width: 100%;

@@ -290,11 +290,11 @@ function Cart({ swal }) {
 
                                                 {!showAddress ? (
                                                     <>
-                                                        <button className="remove-btn" onClick={() => handleItemRemove(item.product_id)}>Remove</button>
-                                                        <div className={`quantity-control ${qtyLoading ? "qty-loading" : ""}`}>
-                                                            <i className="fa-solid fa-plus quantity-btn" onClick={() => handleItemQty(item, "plus")} />
-                                                            <span className="quantity">{item.count}</span>
-                                                            <i className="fa-solid fa-minus quantity-btn" onClick={() => handleItemQty(item, "minus")} />
+                                                        <button className="cart-remove-btn" onClick={() => handleItemRemove(item.product_id)}>Remove</button>
+                                                        <div className={`cart-quantity-control ${qtyLoading ? "qty-loading" : ""}`}>
+                                                            <i className="fa-solid fa-plus cart-quantity-btn" onClick={() => handleItemQty(item, "plus")} />
+                                                            <span className="cart-quantity">{item.count}</span>
+                                                            <i className="fa-solid fa-minus cart-quantity-btn" onClick={() => handleItemQty(item, "minus")} />
                                                         </div>
                                                     </>
                                                 ) : (
@@ -320,19 +320,19 @@ function Cart({ swal }) {
                             <div className="price-details">
 
                                 {showAddress && !showSelectAddress && (
-                                    <div className="add-address-container">
-                                        <div className="add-address">
-                                            <span className="address-add-btn-cont" onClick={handleAddressAdd}>
-                                                <i className="fa-solid fa-plus add-address-btn" />
+                                    <div className="cart-add-address-container">
+                                        <div className="cart-add-address">
+                                            <span className="cart-address-add-btn-cont" onClick={handleAddressAdd}>
+                                                <i className="fa-solid fa-plus cart-add-address-btn" />
                                             </span>
-                                            <h3 className="add-address-head">Add Address</h3>
+                                            <h3 className="cart-add-address-head">Add Address</h3>
                                         </div>
-                                        <p className="add-address-description">Please provide your complete delivery address to ensure timely and accurate delivery.</p>
+                                        <p className="cart-add-address-description">Please provide your complete delivery address to ensure timely and accurate delivery.</p>
                                     </div>
                                 )}
 
                                 {showSelectAddress && !showPaymentMethod && (
-                                    <div className="add-address-container">
+                                    <div className="cart-add-address-container">
                                         <div className="select-address-head-container">
                                             <h3>
                                                 Delivery To
@@ -346,19 +346,19 @@ function Cart({ swal }) {
                                             </button>
                                         </div>
                                         <hr className="select-address-line" />
-                                        <div className="select-address">
-                                            <span className="address-select-btn-cont" >
-                                                <i className="fa-solid fa-house add-address-btn" />
+                                        <div className="cart-select-address">
+                                            <span className="cart-address-select-btn-cont" >
+                                                <i className="fa-solid fa-house cart-add-address-btn" />
                                             </span>
                                             {/* <p className="select-address-description">Arun Kumar <br />
                                                 Ashirvadh, Ashokapuram, Kozhikode, <br />
                                                 Kerala, 673303.</p> */}
                                             {Object.keys(defaultAddress).length > 0 ? (
-                                                <p className="select-address-description">
+                                                <p className="cart-select-address-description">
                                                     {`${defaultAddress.full_name}, ${defaultAddress.house_name}, ${defaultAddress.city}, ${defaultAddress.state}, ${defaultAddress.pin_code}`}
                                                 </p>
                                             ) : (
-                                                <p className="select-address-description">No default address set</p>
+                                                <p className="cart-select-address-description">No default address set</p>
                                             )}
                                         </div>
 
@@ -388,7 +388,7 @@ function Cart({ swal }) {
                                     //         </div>
                                     //     </div>
                                     // </div>
-                                    <div className="add-address-container">
+                                    <div className="cart-add-address-container">
                                         <div className="select-address-head-container">
                                             <h3>Available payment methods</h3>
                                         </div>

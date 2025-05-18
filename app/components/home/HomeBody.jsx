@@ -149,12 +149,12 @@ export default function HomeBody() {
                         <button className="scroll-button left" onClick={() => scroll("left")}>&#10094;</button>
                     )}
 
-                    <div className="categories-container" ref={scrollContainerRef}>
+                    <div className="home-categories-container" ref={scrollContainerRef}>
                         {/* {categories.map((category, index) => ( */}
                         {categoryCarousel.map((category, index) => (
-                            <div className="category-card" key={index} onClick={() => handleRedirectToSubCategories(category)}>
-                                <img src={category.image_path} alt={category.name} className="category-image" />
-                                <div className="category-title">{category.name}</div>
+                            <div className="home-category-card" key={index} onClick={() => handleRedirectToSubCategories(category)}>
+                                <img src={category.image_path} alt={category.name} className="home-category-image" />
+                                <div className="home-category-title">{category.name}</div>
                             </div>
                         ))}
                     </div>

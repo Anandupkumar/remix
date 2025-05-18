@@ -183,7 +183,7 @@ function ProductsView({ swal }) {
                                 <p>Offer Price</p>
                             </div>
 
-                            <button className="add-to-cart-btn" onClick={handleAddToCart}>ADD TO CART
+                            <button className="view-prod-add-to-cart-btn" onClick={handleAddToCart}>ADD TO CART
                                 <i className="fa-solid fa-cart-shopping" style={{ marginLeft: "5px" }} />
                             </button>
 
