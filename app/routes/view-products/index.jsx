@@ -201,13 +201,12 @@ function ProductsView({ swal }) {
                                 {/* <p>{product.highlight[0]}</p> */}
                             </div>
 
-                            <div className="description">
+                            {/* <div className="description">
                                 <h2>More Details</h2>
                                 {productDetails.highlight?.map((item, index) => (
                                     <p key={index}>{item}</p>
                                 ))}
-                                {/* <p>{product.highlight[0]}</p> */}
-                            </div>
+                            </div> */}
                         </div>
                     </div>
 

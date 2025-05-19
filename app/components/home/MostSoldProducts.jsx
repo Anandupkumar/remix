@@ -170,7 +170,7 @@ export default function MostSoldProducts({ secId, title }) {
                             </div>
                             <h3 className="most-product-title">{product.name}</h3>
                             {/* <p className="product-description">{product.description}</p> */}
-                            <p dangerouslySetInnerHTML={{ __html: product.description }} />
+                            {/* <p dangerouslySetInnerHTML={{ __html: product.description }} /> */}
 
                             <p
                                 className={`most-product-delivery ${product.freedelivery_available.includes("0") ? "free-delivery" : ""
