@@ -1,4 +1,4 @@
-.address-container {
+.address-container-adrs {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -9,7 +9,7 @@
     gap: 5%;
 }
 
-.address-head {
+.address-head-adrs {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -32,7 +32,7 @@
     }
 }
 
-.add-address {
+.add-address-adrs {
     display: flex;
     flex-direction: row;
     gap: 15px;
@@ -54,7 +54,7 @@
     }
 }
 
-.reviews-grid {
+.reviews-grid-adrs {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
     gap: 40px;
@@ -62,7 +62,7 @@
     margin-top: 45px;
 }
 
-.review-card {
+.review-card-adrs {
     background-color: #f9f9f9;
     padding: 15px;
     border-radius: 10px;
@@ -80,7 +80,7 @@
     margin-bottom: 0px;
 }
 
-.select-address-head-container {
+.select-address-head-container-adrs {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -152,7 +152,7 @@
     font-size: 20px;
 }
 
-.edit-btn {
+.edit-btn-adrs {
     background-color: #ffffff;
     color: #454545;
     border: none;
@@ -166,7 +166,7 @@
     border: 1px solid #454545;
 }
 
-.edit-btn:hover {
+.edit-btn-adrs:hover {
     background-color: #f52c2c;
     color: #fff;
 }
@@ -229,12 +229,12 @@
 
 
 @media (max-width: 1000px) {
-    .address-container {
+    .address-container-adrs {
         padding-left: 4%;
         padding-right: 4%;
     }
 
-    .reviews-grid {
+    .reviews-grid-adrs {
         grid-template-columns: repeat(auto-fill, minmax(48%, 1fr));
         gap: 30px;
     }
@@ -244,44 +244,44 @@
         padding-right: 20px;
     }
 
-    .add-address {
+    .add-address-adrs {
         padding-left: 20px;
         padding-right: 25px;
     }
 
     .change-btn,
-    .edit-btn {
+    .edit-btn-adrs {
         font-size: 12px;
         padding: 3px 12px;
     }
 }
 
 @media (max-width: 600px) {
-    .address-container {
+    .address-container-adrs {
         padding-left: 2%;
         padding-right: 2%;
         gap: 3%;
     }
 
-    .address-head {
+    .address-head-adrs {
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
 
-    .add-address {
+    .add-address-adrs {
         width: 57%;
         justify-content: center;
         padding-left: 15px;
         padding-right: 15px;
     }
 
-    .reviews-grid {
+    .reviews-grid-adrs {
         grid-template-columns: 1fr;
         gap: 20px;
     }
 
-    .review-card {
+    .review-card-adrs {
         padding: 15px;
     }
 
@@ -302,7 +302,7 @@
     }
 
     .change-btn,
-    .edit-btn {
+    .edit-btn-adrs {
         font-size: 12px;
         padding: 3px 10px;
         margin-bottom: 10px;

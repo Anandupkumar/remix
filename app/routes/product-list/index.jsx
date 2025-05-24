@@ -27,9 +27,9 @@ function ProductList({ swal }) {
     const navigate = useNavigate();
 
     const location = useLocation();
-    const id = new URLSearchParams(location.search).get("id");
-    const name = new URLSearchParams(location.search).get("name");
-    const subName = new URLSearchParams(location.search).get("subName");
+    // const id = new URLSearchParams(location.search).get("id");
+    // const name = new URLSearchParams(location.search).get("name");
+    // const subName = new URLSearchParams(location.search).get("subName");
     const subId = new URLSearchParams(location.search).get("subId");
 
     const [productList, setProductList] = useState([]);
@@ -115,7 +115,7 @@ function ProductList({ swal }) {
             setShowSkeleton(true);
             try {
                 // let brandId = "1";
-                const productsData = await getProductList(id);
+                const productsData = await getProductList(subId);
 
                 if (productsData && Array.isArray(productsData)) {
                     setProductList(productsData);

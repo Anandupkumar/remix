@@ -49,8 +49,12 @@ export default function Categories() {
     }, []);
 
 
-    const handleRedirectToSubCategories = (category) => {
-        navigate(`/sub-categories?id=${category.id}&name=${category.name}`);
+    // const handleRedirectToSubCategories = (category) => {
+    //     navigate(`/sub-categories?id=${category.id}&name=${category.name}`);
+    // }
+
+    const handleRedirectToProductList = (category) => {
+        navigate(`/product-list?subId=${category.id}`);
     }
 
     return (
@@ -72,7 +76,7 @@ export default function Categories() {
 
                         <div className="categories-container">
                             {categoryCarousel.map((category, index) => (
-                                <div className="category-card" key={index} onClick={() => handleRedirectToSubCategories(category)}>
+                                <div className="category-card" key={index} onClick={() => handleRedirectToProductList(category)}>
                                     <img src={category.image_path} alt={category.name} className="category-image" />
                                     <div className="category-title">{category.name}</div>
                                 </div>

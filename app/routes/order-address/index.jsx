@@ -192,10 +192,10 @@ function OrderAddress({ swal }) {
                 <Navbar />
             </div>
 
-            <div className="address-container">
-                <div className="address-head">
+            <div className="address-container-adrs">
+                <div className="address-head-adrs">
                     <h2>Address</h2>
-                    <div className="add-address" onClick={handleAddAddress}>
+                    <div className="add-address-adrs" onClick={handleAddAddress}>
                         <span className="address-add-btn-cont" >
                             <i className="fa-solid fa-plus add-address-btn" />
                         </span>
@@ -204,16 +204,16 @@ function OrderAddress({ swal }) {
                         </h3>
                     </div>
                 </div>
-                <div className="reviews-grid">
+                <div className="reviews-grid-adrs">
                     {addressData.length > 0 ? addressData.map((address, index) => (
-                        <div key={index} className="review-card">
+                        <div key={index} className="review-card-adrs">
                             <div className="add-address-container">
-                                <div className="select-address-head-container">
+                                <div className="select-address-head-container-adrs">
                                     <h3>
                                         {address.type.charAt(0).toUpperCase() + address.type.slice(1)}
                                     </h3>
                                     <div>
-                                        <button className="edit-btn" onClick={() => handleEditAddress(address)}>Edit</button>
+                                        <button className="edit-btn-adrs" onClick={() => handleEditAddress(address)}>Edit</button>
                                         <button className="change-btn" onClick={() => handleDeleteAddress(address.id)}>Delete</button>
                                     </div>
                                 </div>

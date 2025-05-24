@@ -41,6 +41,45 @@ function AddAddress({ swal }) {
         type: "home", // default type
     });
 
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         const isVerified = localStorage.getItem("authToken");
+
+    //         if (id === null) {
+    //             localStorage.removeItem("editAddress");
+    //         }
+
+    //         const storedAddress = localStorage.getItem("editAddress");
+    //         const address = storedAddress ? JSON.parse(storedAddress) : null;
+
+    //         if (isVerified && isVerified !== "") {
+    //             setAuthToken(true);
+
+    //             if (id !== null && address !== null) {
+    //                 setFormData(address)
+    //             }
+
+    //             // if (id !== null && address !== null) {
+    //             //     console.log("Fetching address...", address);
+    //             //     try {
+    //             //         const existAddress = await getAddressById(address);
+    //             //         console.log(existAddress);
+    //             //     } catch (error) {
+    //             //         console.error("Error fetching address:", error);
+    //             //     }
+    //             // }
+    //         } else {
+    //             navigate("/");
+    //         }
+    //     };
+
+    //     fetchData();
+    //     if (formData.pin_code.length === 6) {
+    //         fetchLocationByPincode();
+    //     }
+    // }, [navigate, formData.pin_code]);
+
+
     useEffect(() => {
         const fetchData = async () => {
             const isVerified = localStorage.getItem("authToken");
@@ -74,10 +113,10 @@ function AddAddress({ swal }) {
         };
 
         fetchData();
-        if (formData.pin_code.length === 6) {
-            fetchLocationByPincode();
-        }
-    }, [navigate, formData.pin_code]);
+        // if (formData.pin_code.length === 6) {
+        //     fetchLocationByPincode();
+        // }
+    }, [navigate]);
 
     const handleChange = (e) => {
         setFormData({
@@ -195,13 +234,13 @@ function AddAddress({ swal }) {
                         <input
                             type="text"
                             name="pin_code"
-                            placeholder="Pin code"
+                            placeholder="Zone code"
                             value={formData?.pin_code}
                             onChange={handleChange}
                             pattern="[0-9]{6}"
                             maxLength="6"
                             title="Enter a valid 6-digit pin code"
-                            required
+                            // required
                         />
                         <input
                             type="text"
