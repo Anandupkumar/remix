@@ -76,7 +76,7 @@ export default function Orders() {
         const res = await getOrderData();
 
         if (res) {
-          // console.log(res);
+          // console.log(res.order_data);
 
           setOrderItems(res.order_data);
           setShowSkeleton(false);
@@ -112,18 +112,29 @@ export default function Orders() {
               <div key={item.order_id} className="cart-item" onClick={() => handleViewOrder(item)}>
                 <img src={item.image_paths[0]} alt={item.name} className="item-image" />
                 <div className="item-details">
-                  <h3>{item.name}</h3>
+                  <div className="item-title-status">
+                    <h3>{item.name}</h3>
+                    <span style={{color: "#05bb05"}}>{item.order_item_status}</span>
+                  </div>
                   {/* <p className="item-size">{item.size}</p> */}
                   {/* <div className="item-rating">
                   {"★".repeat(item.star_value)}
                   <span className="reviews">({item.star_value} Reviews)</span>
-                </div> */}
+                  </div> */}
                   {/* <p className="item-price">₹{Number(item?.price).toFixed(2)}</p> */}
 
                   <span className="item-delivery">
                     Ordered on {item.ordered_at}
                     {/* {item.order_item_title} */}
                   </span>
+                  <div className="item-order-details">
+                    <p className="item-order-id">
+                      Order ID: #{item.order_id}
+                    </p>
+                    <span className="item-order-amount">
+                      Total Order Amount: INR {Number(item.grand_total_price).toFixed(2)}
+                    </span>
+                  </div>
                 </div>
 
                 <div className="item-actions">

@@ -56,6 +56,32 @@
     margin-top: 15px;
 }
 
+.item-title-status {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    // align-items: center;
+}
+
+.item-order-details {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    padding-top: 15px;
+}
+
+.item-order-id {
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.item-order-amount {
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
 .item-details h3 {
     font-size: 24px;
     margin-bottom: 5px;

@@ -83,6 +83,8 @@ function Cart({ swal }) {
                 const addressRes = await getAddressData();
 
                 if (res) {
+                    // console.log(res);
+                    
                     setCartItems(res.cart_data);
                     setMiscData(res.misc);
                 }
@@ -106,6 +108,8 @@ function Cart({ swal }) {
     const totalItems = cartItems.reduce((acc, item) => acc + Number(item.count), 0);
     const totalAmount = cartItems.reduce((acc, item) => acc + Number(item.price) * Number(item.count), 0);
     const totalSellingAmount = cartItems.reduce((acc, item) => acc + Number(item.selling_price) * Number(item.count), 0);
+    const grand_total_price = miscData.grand_total || 0;
+    const totalDeliveryCharge = cartItems.reduce((acc, item) => acc + Number(item.delivery_charges) * Number(item.count), 0);
     const totalDiscount = totalAmount - totalSellingAmount;
 
     const handleItemQty = async (item, operation) => {
@@ -427,8 +431,8 @@ function Cart({ swal }) {
                                         <span>₹{totalAmount}</span>
                                     </div>
                                     <div className="price-item">
-                                        <span>Delivery Charge</span>
-                                        <span>₹0</span>
+                                        <span>Total Delivery Charge</span>
+                                        <span>₹{totalDeliveryCharge}</span>
                                     </div>
                                     <div className="price-item">
                                         <span>Total Discount</span>
@@ -437,7 +441,7 @@ function Cart({ swal }) {
                                 </div>
                                 <div className="price-total">
                                     <span>Total Amount</span>
-                                    <span>₹{totalSellingAmount}</span>
+                                    <span>₹{grand_total_price}</span>
                                 </div>
                                 <button className="buy-now-btn" disabled={isDisabled} style={buttonStyle} onClick={handleAddAddress}>{buyButtonContent}</button>
                             </div>
