@@ -62,8 +62,12 @@ export default function HomeBody() {
         { name: "Construction Materials", image_path: "/product-cat2.jpg" },
     ];
 
-    const handleRedirectToSubCategories = (category) => {
-        navigate(`/sub-categories?id=${category.id}&name=${category.name}`);
+    // const handleRedirectToSubCategories = (category) => {
+    //     navigate(`/sub-categories?id=${category.id}&name=${category.name}`);
+    // }
+
+    const handleRedirectToProductList = (category) => {
+        navigate(`/product-list?subId=${category.id}`);
     }
 
     return (
@@ -152,7 +156,7 @@ export default function HomeBody() {
                     <div className="home-categories-container" ref={scrollContainerRef}>
                         {/* {categories.map((category, index) => ( */}
                         {categoryCarousel.map((category, index) => (
-                            <div className="home-category-card" key={index} onClick={() => handleRedirectToSubCategories(category)}>
+                            <div className="home-category-card" key={index} onClick={() => handleRedirectToProductList(category)}>
                                 <img src={category.image_path} alt={category.name} className="home-category-image" />
                                 <div className="home-category-title">{category.name}</div>
                             </div>
