@@ -53,31 +53,33 @@ export default function HomeSales() {
         <div className="home-container">
             {/* Mega Sales Section */}
             <section className="mega-sales">
-                <h2>Mega Sales</h2>
-                <div className="row mega-sales-grid">
-                    {megaSalesData.slice(0, 2).map((item, index) => (
-                        <div key={index} className="card" onClick={() => goToURL(item.url)}>
-                            <img src={item.image} alt={item.title} className="card-image" />
+                <div className="mega_sales_inner">
+                    <h2>Mega Sales</h2>
+                    <div className="row mega-sales-grid">
+                        {megaSalesData.slice(0, 2).map((item, index) => (
+                            <div key={index} className="card" onClick={() => goToURL(item.url)}>
+                                <img src={item.image} alt={item.title} className="card-image" />
 
-                            <div className="card-content">
-                                <h3>{item.title}</h3>
-                                <p>{item.description}</p>
+                                <div className="card-content">
+                                    <h3>{item.title}</h3>
+                                    <p>{item.description}</p>
+                                </div>
                             </div>
-                        </div>
-                    ))}
-                </div>
+                        ))}
+                    </div>
 
-                <div className="row mega-sales-grid">
-                    {megaSalesData.slice(2, 4).map((item, index) => (
-                        <div key={index} className="card" onClick={() => goToURL(item.url)}>
-                            <img src={item.image} alt={item.title} className="card-image" />
+                    <div className="row mega-sales-grid">
+                        {megaSalesData.slice(2, 4).map((item, index) => (
+                            <div key={index} className="card" onClick={() => goToURL(item.url)}>
+                                <img src={item.image} alt={item.title} className="card-image" />
 
-                            <div className="card-content">
-                                <h3>{item.title}</h3>
-                                <p>{item.description}</p>
+                                <div className="card-content">
+                                    <h3>{item.title}</h3>
+                                    <p>{item.description}</p>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </section>
 
