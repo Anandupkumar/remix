@@ -125,121 +125,135 @@ function ProductsView({ swal }) {
     ];
 
 
+    // Show "No products" if productDetails is empty or missing required fields
+    const hasProduct =
+        productDetails &&
+        Object.keys(productDetails).length > 0 &&
+        productDetails.name;
+
     return (
         <div className="products-container">
             <div className="products-navbar">
                 <Navbar />
             </div>
             {!showSkeleton ? (
-                <>
-                    <div className="product-details">
-                        <div className="image-gallery">
-                            {productDetails.image_paths?.length > 0 && typeof viewImage === "number" ? (
-                                <>
-                                    <img
-                                        src={productDetails.image_paths[viewImage]}
-                                        alt={productDetails.name}
-                                        className="main-image"
-                                    />
-                                    <div className="thumbnail-container">
-                                        {productDetails.image_paths.map((image, index) => (
-                                            <img
-                                                key={index}
-                                                src={image}
-                                                alt={`Thumbnail ${index + 1}`}
-                                                className="thumbnail"
-                                                onClick={() => handleImageView(index)}
-                                            />
+                hasProduct ? (
+                    <>
+                        <div className="product-details">
+                            <div className="image-gallery">
+                                {productDetails.image_paths?.length > 0 && typeof viewImage === "number" ? (
+                                    <>
+                                        <img
+                                            src={productDetails.image_paths[viewImage]}
+                                            alt={productDetails.name}
+                                            className="main-image"
+                                        />
+                                        <div className="thumbnail-container">
+                                            {productDetails.image_paths.map((image, index) => (
+                                                <img
+                                                    key={index}
+                                                    src={image}
+                                                    alt={`Thumbnail ${index + 1}`}
+                                                    className="thumbnail"
+                                                    onClick={() => handleImageView(index)}
+                                                />
+                                            ))}
+                                        </div>
+                                    </>
+                                ) : (
+                                    <p>No images available</p>
+                                )}
+                            </div>
+
+                            <div className="product-info ">
+                                <span className="best-seller-label">{productDetails.condition}</span>
+                                <h1 className="product-title">{productDetails.name}</h1>
+                                <p className="product-dimensions">{productDetails.dimensions}</p>
+
+                                {/* <div className="rating-reviews">
+                                    <div className="rating">
+                                        {Array.from({ length: Math.floor(Number(productDetails.star_value) || 0) }).map((_, i) => (
+                                            <span key={i} className="star">★</span>
                                         ))}
                                     </div>
-                                </>
-                            ) : (
-                                <p>No images available</p>
-                            )}
-                        </div>
+                                    <p className="reviews">({productDetails.star_value || 0} Reviews)</p>
+                                </div> */}
 
-                        <div className="product-info ">
-                            <span className="best-seller-label">{productDetails.condition}</span>
-                            <h1 className="product-title">{productDetails.name}</h1>
-                            <p className="product-dimensions">{productDetails.dimensions}</p>
 
-                            {/* <div className="rating-reviews">
-                                <div className="rating">
-                                    {Array.from({ length: Math.floor(Number(productDetails.star_value) || 0) }).map((_, i) => (
-                                        <span key={i} className="star">★</span>
+                                <div className="price-quantity-container">
+                                    <p className="price">₹{productDetails.selling_price}.00</p>
+                                    <p className="org-price">₹{productDetails.price}.00</p>
+
+                                </div>
+
+                                <div className="offer-price-lbl">
+                                    <p>Offer Price</p>
+                                </div>
+
+                                <button className="view-prod-add-to-cart-btn" onClick={handleAddToCart}>ADD TO CART
+                                    <i className="fa-solid fa-cart-shopping" style={{ marginLeft: "5px" }} />
+                                </button>
+
+                                <div className="description">
+                                    <h2>Description</h2>
+                                    {/* <p>{product.description}</p> */}
+                                    <div dangerouslySetInnerHTML={{ __html: productDetails.description }} />
+                                </div>
+
+                                <div className="description">
+                                    <h2>Highlights</h2>
+                                    {productDetails.highlight?.map((item, index) => (
+                                        <p key={index}>{item}</p>
                                     ))}
+                                    {/* <p>{product.highlight[0]}</p> */}
                                 </div>
-                                <p className="reviews">({productDetails.star_value || 0} Reviews)</p>
-                            </div> */}
 
-
-                            <div className="price-quantity-container">
-                                <p className="price">₹{productDetails.selling_price}.00</p>
-                                <p className="org-price">₹{productDetails.price}.00</p>
-
+                                {/* <div className="description">
+                                    <h2>More Details</h2>
+                                    {productDetails.highlight?.map((item, index) => (
+                                        <p key={index}>{item}</p>
+                                    ))}
+                                </div> */}
                             </div>
-
-                            <div className="offer-price-lbl">
-                                <p>Offer Price</p>
-                            </div>
-
-                            <button className="view-prod-add-to-cart-btn" onClick={handleAddToCart}>ADD TO CART
-                                <i className="fa-solid fa-cart-shopping" style={{ marginLeft: "5px" }} />
-                            </button>
-
-                            <div className="description">
-                                <h2>Description</h2>
-                                {/* <p>{product.description}</p> */}
-                                <div dangerouslySetInnerHTML={{ __html: productDetails.description }} />
-                            </div>
-
-                            <div className="description">
-                                <h2>Highlights</h2>
-                                {productDetails.highlight?.map((item, index) => (
-                                    <p key={index}>{item}</p>
-                                ))}
-                                {/* <p>{product.highlight[0]}</p> */}
-                            </div>
-
-                            {/* <div className="description">
-                                <h2>More Details</h2>
-                                {productDetails.highlight?.map((item, index) => (
-                                    <p key={index}>{item}</p>
-                                ))}
-                            </div> */}
                         </div>
-                    </div>
 
-                    {/* <div className="reviews-section">
-                        <h2 className="reviews-title">REVIEWS</h2>
-                        <p className="reviews-subtitle">
-                            See what our customers are saying. Explore real experiences and find out why our materials are loved by so many.
-                        </p>
+                        {/* <div className="reviews-section">
+                            <h2 className="reviews-title">REVIEWS</h2>
+                            <p className="reviews-subtitle">
+                                See what our customers are saying. Explore real experiences and find out why our materials are loved by so many.
+                            </p>
 
-                        <div className="reviews-grid">
-                            {reviews.map((review, index) => (
-                                <div key={index} className="review-card">
-                                    <h3 className="review-name">{review.name}</h3>
-                                    <p className="review-text">{review.text}</p>
-                                    <div className="review-rating">
-                                        {Array(review.rating)
-                                            .fill()
-                                            .map((_, i) => (
-                                                <span key={i} className="star">★</span>
-                                            ))}
-                                        {Array(5 - review.rating)
-                                            .fill()
-                                            .map((_, i) => (
-                                                <span key={i} className="star empty">★</span>
-                                            ))}
+                            <div className="reviews-grid">
+                                {reviews.map((review, index) => (
+                                    <div key={index} className="review-card">
+                                        <h3 className="review-name">{review.name}</h3>
+                                        <p className="review-text">{review.text}</p>
+                                        <div className="review-rating">
+                                            {Array(review.rating)
+                                                .fill()
+                                                .map((_, i) => (
+                                                    <span key={i} className="star">★</span>
+                                                ))}
+                                            {Array(5 - review.rating)
+                                                .fill()
+                                                .map((_, i) => (
+                                                    <span key={i} className="star empty">★</span>
+                                                ))}
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
-                        </div>
+                                ))}
+                            </div>
 
-                        <button className="view-all-btn">View All</button>
-                    </div> */}
-                </>
+                            <button className="view-all-btn">View All</button>
+                        </div> */}
+                    </>
+                ) : (
+                   <div className="empty-address">
+                        <h4>
+                            No products found.
+                        </h4>
+                    </div>
+                )
             ) : (
                 <Skeleton count={20} />
             )}

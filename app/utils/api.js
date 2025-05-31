@@ -311,3 +311,19 @@ export const getHomeSectionProductList = async (secId) => {
         return false;
     }
 }
+
+export const fetchSuggestions = async (query) => {
+    if (!query || query.trim() === "") return [];
+    
+    try {
+        const response = await apiRequest(`/api/products/search?q=${encodeURIComponent(query)}`, "GET", null, {}, false);
+        if (isResponseStatusOk(response)) {
+            return response.data;
+        } else {
+            return [];
+        }
+    } catch (error) {
+        console.error("Error fetching suggestions:", error);
+        return [];
+    }
+};

@@ -16,24 +16,64 @@
             margin-right: 3%;
         }
 
-        .home-search-input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px 0 0 5px;
-            outline: none;
-        }
+        .search-wrapper {
+            position: relative;
+            flex: 1; // take the remaining width
 
-        .home-search-button {
-            background-color: #00274d;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
+            display: flex;
 
-            i {
-                font-size: 14px;
+            .home-search-input {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px 0 0 5px;
+                outline: none;
+                background-color: rgb(245 245 245);
+            }
+
+            .home-search-button {
+                background-color: #00274d;
+                color: #ffffff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 0 5px 5px 0;
+                cursor: pointer;
+
+                i {
+                    font-size: 14px;
+                }
+            }
+
+            .suggestion-list {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgb(245 245 245);
+                box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+                z-index: 10;
+                margin: 0;
+                padding: 8px;
+                list-style: none;
+                max-height: 200px;
+                overflow-y: auto;
+
+                li {
+                    padding: 6px 12px;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        max-width: 20px;
+                        max-height: 20px;
+                        margin-right: 8px;
+                    }
+
+                    &:hover {
+                        background-color: #eee;
+                    }
+                }
             }
         }
     }
@@ -182,7 +222,7 @@
 
     .home-bottom-header {
         padding: 10px 20px;
-        
+
         .home-menu-icon {
             display: block;
         }

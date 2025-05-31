@@ -204,7 +204,7 @@ export default function OrderView() {
               </div>
               <div className="price-item">
                 <span>Delivery Charge</span>
-                <span>₹0</span>
+                <span>₹{orderDetails[0]?.delivery_charge}</span>
               </div>
               {/* <div className="price-item">
                 <span>Platform Fee</span>
@@ -213,7 +213,7 @@ export default function OrderView() {
             </div>
             <div className="price-total">
               <span>Total Amount</span>
-              <span>₹{orderDetails[0]?.selling_price}</span>
+              <span>₹{orderDetails[0]?.grand_total}</span>
             </div>
 
             <div className="experience-rating">
