@@ -123,7 +123,7 @@ export default function HomeNavbar() {
                                         key={index}
                                         onClick={() => handleSuggestionClick(item)}
                                     >
-                                        <img src={item?.image_path && item.image_path.length > 0 ? item.image_path[0] : "/default-image.png"} alt={item?.name || ""} />
+                                        <img src={item?.image_paths && item.image_paths.length > 0 ? item.image_paths[0] : "/default-image.png"} alt={item?.name || ""} />
                                         {item?.name}
                                     </li>
                                 ))}

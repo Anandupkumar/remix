@@ -102,16 +102,16 @@ export default function Orders() {
         <Navbar />
       </div>
 
-      <div className="address-container">
+      <div className="orders-container">
         <div className="address-head">
           <h2>My Orders</h2>
         </div>
         {orderItems.length > 0 ? (
-          <div className="reviews-grid">
+          <div className="orders-reviews-grid">
             {orderItems.map((item, index) => (
-              <div key={item.order_id} className="cart-item" onClick={() => handleViewOrder(item)}>
-                <img src={item.image_paths[0]} alt={item.name} className="item-image" />
-                <div className="item-details">
+              <div key={item.order_id} className="orders-cart-item" onClick={() => handleViewOrder(item)}>
+                <img src={item.image_paths[0]} alt={item.name} className="orders-item-image" />
+                <div className="orders-item-details">
                   <div className="item-title-status">
                     <h3>{item.name}</h3>
                     <span style={{color: "#05bb05"}}>{item.order_item_status}</span>

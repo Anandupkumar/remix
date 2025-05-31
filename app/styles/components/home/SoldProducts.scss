@@ -54,6 +54,11 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     text-align: left;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    height: 540px; /* Choose based on tallest card you observed */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .most-product-card:hover {

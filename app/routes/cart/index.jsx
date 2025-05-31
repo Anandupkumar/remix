@@ -263,7 +263,7 @@ function Cart({ swal }) {
     }
 
     const handleRedirectToProducts = () => {
-        navigate("/products");
+        navigate("/orders");
     }
 
     return (
@@ -315,7 +315,7 @@ function Cart({ swal }) {
                                     <h4 className="empty-cart-label">
                                         {miscData.response_message}
                                     </h4>
-                                    <button onClick={handleRedirectToProducts} className="order-placed-btn" >BACK TO SHOPPING</button>
+                                    <button onClick={handleRedirectToProducts} className="order-placed-btn" >GO TO ORDERS</button>
                                 </div>
                             )}
                         </div>
@@ -452,7 +452,7 @@ function Cart({ swal }) {
                         <h2 className="order-placed-head">Order Placed Successfully <img className="order-placed-head-img" src="/orderplaced.png" alt="" /></h2>
                         <img className="order-placed-img" src="/ordered.png" alt="" />
                         <p className="order-placed-text">Your delivery is on its way and will be arriving soon!</p>
-                        <button onClick={handleRedirectToProducts} className="order-placed-btn" >BACK TO SHOPPING</button>
+                        <button onClick={handleRedirectToProducts} className="order-placed-btn" >GO TO ORDERS</button>
                     </div>
                 )}
             </div>
