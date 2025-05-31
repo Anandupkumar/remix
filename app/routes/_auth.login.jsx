@@ -10,7 +10,8 @@ export default function Login() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [authToken, setAuthToken] = useState(false);
     const [countryCodes, setCountryCodes] = useState([]);
-    const [selectedCountryCode, setSelectedCountryCode] = useState("+91");
+    const [selectedCountryCode, setSelectedCountryCode] = useState("+974");
+    const [maxLength, setMaxLength] = useState(14);
 
     const navigate = useNavigate();
 
@@ -29,7 +30,7 @@ export default function Login() {
                     if (resData.length > 0) {
                         setSelectedCountryCode(resData[0].code);
                     } else {
-                        setCountryCodes([{ code: "+91", name: "India" }]);
+                        setCountryCodes([{ code: "+974", name: "Qatar" }]);
                     }
 
                     setAuthToken(false);
@@ -135,7 +136,7 @@ export default function Login() {
                                 placeholder="Enter phone number"
                                 value={phoneNumber}
                                 onChange={handleInputChange}
-                                maxLength={10}
+                                maxLength={maxLength}
                                 className="input"
                                 required
                             />
