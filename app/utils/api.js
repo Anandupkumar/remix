@@ -342,3 +342,17 @@ export const fetchCountryCodes = async () => {
         return [];
     }
 }
+
+export const fetchFooterData = async () => {
+    try {
+        const response = await apiRequest("/micros/web_src/api/app/display/footer_section", "GET", null, {}, false);
+        if (isResponseStatusOk(response)) {
+            return response.data;
+        } else {
+            return [];
+        }
+    } catch (error) {
+        console.error("Error fetching footer data:", error);
+        return [];
+    }
+}

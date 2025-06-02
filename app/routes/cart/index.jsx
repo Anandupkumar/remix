@@ -32,6 +32,12 @@ function Cart({ swal }) {
     const [defaultAddress, setDefaultAddress] = useState({})
     const [qtyLoading, setQtyLoading] = useState(false);
     const [selectedMethod, setSelectedMethod] = useState("COD");
+    const [grand_total_price, setGrandTotalPrice] = useState(0);
+    const [totalItems, setTotalItems] = useState(0);
+    const [totalAmount, setTotalAmount] = useState(0);
+    const [totalSellingAmount, setTotalSellingAmount] = useState(0);
+    const [totalDeliveryCharge, setTotalDeliveryCharge] = useState(0);
+    const [totalDiscount, setTotalDiscount] = useState(0);
     const [cartItems, setCartItems] = useState([
         // {
         //     product_id: 1,
@@ -83,10 +89,21 @@ function Cart({ swal }) {
                 const addressRes = await getAddressData();
 
                 if (res) {
+
+                    await updateCartData(res);
                     // console.log(res);
-                    
-                    setCartItems(res.cart_data);
-                    setMiscData(res.misc);
+
+                    // setCartItems(res.cart_data);
+                    // setMiscData(res.misc);
+                    // setTotalItems(res.cart_data.reduce((acc, item) => acc + Number(item.count), 0));
+                    // const totalAmount = res.cart_data.reduce((acc, item) => acc + Number(item.price) * Number(item.count), 0);
+                    // setTotalAmount(totalAmount);
+                    // const totalSellingAmount = res.cart_data.reduce((acc, item) => acc + Number(item.selling_price) * Number(item.count), 0);
+                    // setTotalSellingAmount(totalSellingAmount);
+                    // setGrandTotalPrice(res.misc.grand_total || 0);
+                    // const totalDeliveryCharge = res.cart_data.reduce((acc, item) => acc + Number(item.delivery_charges) * Number(item.count), 0);
+                    // setTotalDeliveryCharge(totalDeliveryCharge);
+                    // setTotalDiscount(totalAmount - totalSellingAmount);
                 }
 
                 if (addressRes && Array.isArray(addressRes)) {
@@ -105,12 +122,28 @@ function Cart({ swal }) {
         }
     };
 
-    const totalItems = cartItems.reduce((acc, item) => acc + Number(item.count), 0);
-    const totalAmount = cartItems.reduce((acc, item) => acc + Number(item.price) * Number(item.count), 0);
-    const totalSellingAmount = cartItems.reduce((acc, item) => acc + Number(item.selling_price) * Number(item.count), 0);
-    const grand_total_price = miscData.grand_total || 0;
-    const totalDeliveryCharge = cartItems.reduce((acc, item) => acc + Number(item.delivery_charges) * Number(item.count), 0);
-    const totalDiscount = totalAmount - totalSellingAmount;
+    const updateCartData = async (newCartData) => {
+        // console.log("New Cart Data:", newCartData);
+
+        setCartItems(newCartData.cart_data);
+        setMiscData(newCartData.misc);
+        setTotalItems(newCartData.cart_data.reduce((acc, item) => acc + Number(item.count), 0));
+        const totalAmount = newCartData.cart_data.reduce((acc, item) => acc + Number(item.price) * Number(item.count), 0);
+        setTotalAmount(totalAmount);
+        const totalSellingAmount = newCartData.cart_data.reduce((acc, item) => acc + Number(item.selling_price) * Number(item.count), 0);
+        setTotalSellingAmount(totalSellingAmount);
+        setGrandTotalPrice(newCartData.misc.grand_total || 0);
+        const totalDeliveryCharge = newCartData.cart_data.reduce((acc, item) => acc + Number(item.delivery_charges) * Number(item.count), 0);
+        setTotalDeliveryCharge(totalDeliveryCharge);
+        setTotalDiscount(totalAmount - totalSellingAmount);
+    }
+
+    // const totalItems = cartItems.reduce((acc, item) => acc + Number(item.count), 0);
+    // const totalAmount = cartItems.reduce((acc, item) => acc + Number(item.price) * Number(item.count), 0);
+    // const totalSellingAmount = cartItems.reduce((acc, item) => acc + Number(item.selling_price) * Number(item.count), 0);
+    // const grand_total_price = miscData.grand_total || 0;
+    // const totalDeliveryCharge = cartItems.reduce((acc, item) => acc + Number(item.delivery_charges) * Number(item.count), 0);
+    // const totalDiscount = totalAmount - totalSellingAmount;
 
     const handleItemQty = async (item, operation) => {
 
@@ -178,7 +211,9 @@ function Cart({ swal }) {
                         product_id: itemId
                     };
                     const res = await deleteFromCart(data);
-                    setCartItems(res?.data?.cart_data);
+                    // setCartItems(res?.data?.cart_data);
+                    await updateCartData(res?.data);
+                    // await fetchCartData();
 
                     swal.fire({
                         title: "Deleted!",
@@ -218,7 +253,7 @@ function Cart({ swal }) {
                 setBuyButtonContent("MAKE PAYMENT");
             } else if (showAddress && showSelectAddress && buyButtonContent === 'MAKE PAYMENT') {
                 // console.log(cartItems);
-                
+
                 const orderData = {
                     address_id: Number(defaultAddress.id),
                     flow_path: "cart",
@@ -228,7 +263,7 @@ function Cart({ swal }) {
                     payment_method: `${selectedMethod}`,
                     referred_by: ""
                 };
-                
+
                 const res = await createNewOrder(orderData);
                 // console.log(res);
                 if (res && res?.data?.order_status) {
@@ -242,7 +277,7 @@ function Cart({ swal }) {
                         window.location.reload();
                     });
                 }
-                
+
             } else {
                 setBuyButtonContent("PROCEED");
             }

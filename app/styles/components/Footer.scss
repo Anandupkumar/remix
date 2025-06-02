@@ -50,6 +50,15 @@
                     &:hover {
                         color: #9ac6ff;
                     }
+
+                    a {
+                        color: inherit;
+                        text-decoration: none;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
                 }
             }
         }

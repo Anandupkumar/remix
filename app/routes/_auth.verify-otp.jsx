@@ -71,11 +71,11 @@ export default function VerifyOTP() {
                 localStorage.setItem("authToken", response.token); // Store token
 
                 // navigate("/");
-                // if (!response.user_data?.name || response.user_data.name === null) {
+                if (!response.user_data?.name || response.user_data.name === null || response.user_data.name === "") {
                     navigate("/profile"); 
-                // } else {
-                //     navigate("/"); // Redirect to home page
-                // }
+                } else {
+                    navigate("/"); // Redirect to home page
+                }
             } else {
                 setIsSubmitting(false);
             }
