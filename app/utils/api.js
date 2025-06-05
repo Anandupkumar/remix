@@ -314,7 +314,7 @@ export const getHomeSectionProductList = async (secId) => {
 
 export const fetchSuggestions = async (query) => {
     if (!query || query.trim() === "") return [];
-    
+
     try {
         const response = await apiRequest(`/micros/web_src/api/products/search?q=${encodeURIComponent(query)}`, "GET", null, {}, false);
         if (isResponseStatusOk(response)) {
@@ -353,6 +353,20 @@ export const fetchFooterData = async () => {
         }
     } catch (error) {
         console.error("Error fetching footer data:", error);
+        return [];
+    }
+}
+
+export const cancelOrder = async (data) => {
+    try {
+        const response = await apiRequest("/micros/web_src/api/app/user/account/orders/order_cancel", "POST", data, {}, true);
+        if (isResponseStatusOk(response)) {
+            return response.status;
+        } else {
+            return false;
+        }
+    } catch (error) {
+        console.error("Error canceling order:", error);
         return [];
     }
 }

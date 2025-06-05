@@ -7,8 +7,9 @@ import Footer from "../../components/Footer";
 import { useState, useEffect } from "react";
 import React from "react";
 import { Outlet, useNavigate } from "@remix-run/react";
-import { getOrderDetailData } from "../../utils/api.js"
+import { getOrderDetailData, cancelOrder } from "../../utils/api.js"
 import { useLocation } from "react-router-dom";
+import { withSwal } from 'react-sweetalert2';
 // export const meta: MetaFunction = () => {
 //   return [
 //     { title: "New Remix App" },
@@ -16,7 +17,7 @@ import { useLocation } from "react-router-dom";
 //   ];
 // };
 
-export default function OrderView() {
+function OrderView({ swal }) {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const orderId = searchParams.get("order");
@@ -28,6 +29,8 @@ export default function OrderView() {
   const [orderDetails, setOrderDetails] = useState([]);
   const [updates, setUpdates] = useState([]);
   const [finalStatusText, setFinalStatusText] = useState("");
+  const [showCancelPopup, setShowCancelPopup] = useState(false);
+  const [cancelReason, setCancelReason] = useState("");
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
@@ -73,13 +76,18 @@ export default function OrderView() {
           setOrderDetails(res.order_data)
 
           const rawUpdates = [
-            { status: "Order Placed", date: res.order_data[0].ordered_at },
-            { status: "Packed", date: res.order_data[0].packed_at },
-            { status: "Shipped", date: res.order_data[0].shipped_at },
-            { status: "Delivered", date: res.order_data[0].delivered_at }
+            { status: "Order Placed", date: res.order_data?.[0]?.ordered_at || "" },
+            { status: "Packed", date: res.order_data?.[0]?.packed_at || "" },
+            { status: "Shipped", date: res.order_data?.[0]?.shipped_at || "" },
+            { status: "Delivered", date: res.order_data?.[0]?.delivered_at || "" },
+            { status: "Cancelled", date: res.order_data?.[0]?.cancellled_at || "" }
           ];
 
-          const updates = rawUpdates.filter(update => update.date && update.date.trim() !== "");
+          const updates = rawUpdates.filter(update =>
+            typeof update.date === "string" && update.date.trim() !== ""
+          );
+          // console.log(updates);
+
           setUpdates(updates);
 
           const lastCompleted = [...updates].reverse().find(u => u.date && u.date.trim() !== "");
@@ -105,6 +113,45 @@ export default function OrderView() {
 
   const handleAddAddress = () => {
     navigate("/add-address");
+  };
+
+  const handleCancelOrder = () => {
+    setShowCancelPopup(true);
+  };
+
+  const handleConfirmCancel = async () => {
+    // Add API call here to cancel the order
+    setShowCancelPopup(false);
+
+    const cancelParams = {
+      order_id: orderDetails[0].order_id,
+      order_item_id: orderDetails[0].item_id,
+      // order_item_id: "",
+      cancellation_reason: cancelReason,
+    }
+
+    // console.log("Cancel Params:", cancelParams);
+
+    const cancelRes = await cancelOrder(cancelParams);
+    // console.log(cancelRes);
+    if (cancelRes && !cancelRes.error) {
+      swal.fire({
+        title: "Success!",
+        text: cancelRes.message,
+        icon: "success"
+      }).then(() => {
+        // navigate(`/order-view?order=${orderDetails[0].order_id}&item=${orderDetails[0].item_id}`);
+        window.location.reload();
+      });
+      // Handle successful cancellation (e.g., show a success message)
+    }
+    setCancelReason("");
+    // You can add a success message or redirect here
+  };
+
+  const handleCancelPopupClose = () => {
+    setShowCancelPopup(false);
+    setCancelReason("");
   };
 
   function formatDate(dateString) {
@@ -133,10 +180,15 @@ export default function OrderView() {
                     className="item-image"
                   />
                   <div className="item-details">
-                    <p className="item-size" style={{ marginBottom: "10px" }}>
-                      {" "}
-                      Order ID - {item.order_id}
-                    </p>
+                    <div className="cancel-wrap">
+                      <p className="item-size" style={{ marginBottom: "10px" }}>
+                        {" "}
+                        Order ID - {item.order_id}
+                      </p>
+                      <p className="item-status">
+                        <span className={`order-item-status ${item.order_item_status?.toLowerCase()}`}>{item.order_item_status}</span>
+                      </p>
+                    </div>
                     {/* <h3>Delivered on {formatDate(item.order_item_status)}</h3> */}
                     <h3>{finalStatusText}</h3>
                     <p className="item-size">{item.name}</p>
@@ -156,7 +208,14 @@ export default function OrderView() {
               ))}
             </div>
             <div className="order-updates">
-              <h3>Updates</h3>
+              <div className="updates-header">
+                <h3>Updates</h3>
+                {!updates.some(update => update.status === "Delivered" || update.status === "Shipped" || update.status === "Cancelled") && (
+                  <button onClick={handleCancelOrder} className="cancel-order-btn">
+                    Cancel Order
+                  </button>
+                )}
+              </div>
               <div className="timeline">
                 {updates.map((update, index) => (
                   <div key={index} className="timeline-item">
@@ -170,6 +229,26 @@ export default function OrderView() {
                   </div>
                 ))}
               </div>
+              {showCancelPopup && (
+                <div className="cancel-popup">
+                  <div className="cancel-popup-content">
+                    <h4>Are you sure do you want to cancel this order ?</h4>
+                    <textarea
+                      placeholder="Describe cancellation reason"
+                      value={cancelReason}
+                      onChange={(e) => setCancelReason(e.target.value)}
+                    />
+                    <div className="cancel-popup-buttons">
+                      <button onClick={handleConfirmCancel} className="confirm-cancel-btn">
+                        Yes I confirm to cancel this order
+                      </button>
+                      <button onClick={handleCancelPopupClose} className="cancel-popup-close">
+                        I don't want to cancel,I have changed my mind
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
@@ -245,3 +324,5 @@ export default function OrderView() {
     </div>
   );
 }
+
+export default withSwal(({ swal }) => <OrderView swal={swal} />);
